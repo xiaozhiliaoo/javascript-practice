@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+
+/*jQuery.fn = jQuery.prototype = {  //添加实例属性和方法
+	
+	jquery : 版本
+	
+	constructor : 修正指向问题
+	
+	init() : 初始化和参数管理
+	
+	selector : 存储选择字符串
+	
+	length : this对象的长度
+	
+	toArray() :  转数组
+	
+	get() :  转原生集合
+	
+	pushStack() :  JQ对象的入栈
+	
+	each() :  遍历集合
+	
+	ready() :  DOM加载的接口
+	
+	slice() :  集合的截取
+	
+	first() :  集合的第一项
+	
+	last() :   集合的最后一项
+	
+	eq() :   集合的指定项
+	
+	map() :   返回新集合
+	
+	end() :   返回集合前一个状态
+	
+	push() :    (内部使用)
+	
+	sort() :    (内部使用)
+	
+	splice() :  (内部使用)
+	
+};*/
+
+</script>
+<script src="jquery-2.0.3.js"></script>
+<script>
+
+//alert( $().jquery );  弹出版本号
+//先定义对象
+function Aaa(){
+}
+// 自动生成consturtor属性~~~  js源码  创建完对象后，就会自动生成construtor
+// 为什么jq中还要改变指向？？？  容易被改变
+//Aaa.prototype.constructor = Aaa;
+//Aaa.prototype.constructor = Array;
+
+//1
+/*Aaa.prototype.name = 'hello';
+Aaa.prototype.age = 30;*/
+//alert( a1.constructor )   Aaa
+
+
+
+//2   1,2一样  不是添加是覆盖！！！原来有的被覆盖了~~~construtor了
+/*Aaa.prototype = {
+	constructor : Aaa,
+	name : 'hello',
+	age : 30
+};      //alert( a1.constructor )   Object
+*/
+Aaa.prototype = {
+	constructor : Aaa,  //修正指向 从Object转向Aaa
+	name : 'hello',
+	age : 30
+}; 
+
+var a1 = new Aaa();
+
+alert( a1.constructor );
+
+
+
+
+
+
+
+
+
+// 对外的接口
+//$() jQuery()
+//$('li','ul')  谁下面的li  是ul下面的
+
+/*$(""), $(null), $(undefined), $(false)
+
+$('#div1') $('.box') $('div')  $('#div1 div.box')
+$('<li>')  $('<li>1</li><li>2</li>')
+
+$(this)  $(document)
+
+$(function(){})
+
+$([])  $({})*/
+
+$(function(){
+	// 原生得先获取到li  循环操作
+	console.log( $('li').css('background','red') );
+	//  获取的是this     this是数组？？？         this---->对象     
+	console.log(typeof($('li').css('background','red')));
+	$('li')[1].style.background = 'red';
+	
+});
+
+//面向对象只能找到this
+/*var aLi = document.getElementsByTagName('li');
+
+for(var i=0;i<aLi.length;i++){
+	aLi[i].style.background = 'red';
+}
+
+
+
+$('li')   <======>
+this = {
+	0 : 'li',
+	1 : 'li',
+	2 : 'li',
+	length : 3
+};
+
+for(var i=0;i<this.length;i++){
+	this[i].style.background = 'red';
+}*/
+
+</script>
+</head>
+
+<body>
+<ul>
+	<li></li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+</html>

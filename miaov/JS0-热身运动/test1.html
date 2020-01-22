@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<style>
+/*ul天生有样式*/
+li{
+	list-style: none;
+}
+.lis{
+	
+	width:80px;
+	height:30px;
+	border:1px solid blue;
+	/*子类相对于父类定位  哪个子标签下使用了absolute 那么就是相对于父级而进行定位*/
+	position: relative;
+}
+
+
+.lis a{
+	/*要有行高 必须要有block   写css顺序反省了思维角度*/
+	display: block;
+	/*行高与lis一样*/
+	line-height: 30px;
+	/*width:80px;*/
+	text-align: center;
+	text-decoration: none;
+	color:#000;
+	background: #f1f1f1;
+}
+
+ul ul{
+	padding:0;
+	margin:0;
+	width:140px;
+	/*border:1px solid palevioletred;*/
+	position: absolute;
+	top:30px;
+	/*因为父级有一个边框像素*/
+	left:-1px;
+	display: none;
+}
+
+ul li li{
+	text-align: center;
+	line-height: 20px;
+	/*display: none;*/
+}
+
+</style>
+
+</head>
+<body>
+	<ul>
+		<li id="lis" class="lis">
+			<a id="link" href="#">微博</a>
+	    	<ul id="ul1">
+		    	<li>私信</li>
+		    	<li>评论</li>
+		    	<li>@我</li>
+	    	</ul>
+	  	</li>
+	</ul>
+	
+	<script>
+	/*
+	 自定义事件：鼠标点三次的实现非js原生事件 可以在一定时间内检测鼠标单击了多少次
+	 
+	 .  可以理解为  "的"   
+	 
+	 如果把script放在了head里面,那么会报错   
+	 
+	 Cannot set property onmouseover'of null，  空指针异常本质就是......必须等待所有html元素创建完
+	 
+	 * */
+	var li = document.getElementById('lis');
+	var ul = document.getElementById('ul1');
+	var a = document.getElementById('link');
+	
+	li.onmouseover = show;
+	li.onmouseout = hide;
+	
+	function show() {
+		ul.style.display = 'block';
+		ul.style.background = 'yellow';
+		a.style.background = 'pink';
+	}
+	
+	function hide() {
+		ul.style.display = 'none';
+		a.style.background = '#f1f1f1';
+	}
+</script>
+</body>
+</html>
+<!--
+
+希望把某个元素移除你的视线：
+
+	1、display:none;				显示为无
+  2、visibility:hidden;	隐藏
+  3、width \ height = 0  从上往下慢慢出来 www.uc.cn
+  4、透明度      淡入淡出   
+  5、left \ top    通过定位移出去  效果实现原理
+  6、拿一个白色DIV盖住它    左上角出来  回字型效果
+  7、margin负值
+  
+  12种以上。可以js动态修改属性
+  ……
+
+-->

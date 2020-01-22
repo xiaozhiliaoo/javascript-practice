@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+	
+	
+</style>
+<script type="text/javascript">
+	window.onload = function(){
+		var oI = document.getElementsByTagName("input");
+		var oDiv = document.getElementsByTagName("div")[0];
+		oI[1].onclick = function(){
+		
+			var text = oI[0].value;
+				for ( var attr in text ) {
+					var str = '';
+					var num = 0;
+					str += num + '. ' + attr + ':' +text[attr] + '<br />';
+					num ++;
+			}
+			oDiv.innerHTML = str;
+		};
+	}
+</script>
+</head>
+<body>
+	<p>查询对象属性</p>
+	<input type="text" />
+	<input type="button" value="查询属性"/>
+	<div></div>
+</body>
+</html>

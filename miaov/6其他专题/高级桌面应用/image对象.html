@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function ()
+{
+	// 专门复杂图像加载的
+	var oImg=new Image();
+	
+	oImg.onload=function ()
+	{
+		alert('图片预加载完成');
+	};
+	
+	oImg.onerror=function ()
+	{
+		alert('失败');
+	};
+	
+	oImg.src='http://www.kjrili.com/news/0b92e42c-b167-4673-8f48-2a41fbe305e0.html';
+};
+</script>
+</head>
+
+<body>
+	<img width="400" height="300" src="http://www.kjrili.com/news/0b92e42c-b167-4673-8f48-2a41fbe305e0.html" onmouseover="this.src='http://www.17fx.cn/attachment/201103/4/22_1299264077IUUU.jpg';" onmouseout="this.src='http://www.duose.com/p/2007/0405/46516_046875.jpg';" /></body>
+
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0;}
+body{ font:12px/1.125 Arial,Helvetica,sans-serif;}
+li{ list-style:none;}
+#login{ width:252px; height:385px; background:url(bg.jpg) no-repeat; margin:20px auto; position:relative;}
+.detail{margin:0 0 5px 30px; position:relative; top:110px;}
+.detail input{ color: #999999; border:1px solid #74C8E5; border-radius:3px 3px 3px 3px; height:15px; line-height:14px; padding:8px 5px 7px; width:184px;}
+#suggest{ background:none repeat scroll 0 0 #FFFFFF; border:1px solid #CCCCCC; left:30px; margin:0; overflow:hidden; padding:0; position:absolute; text-align:left; top:142px; visibility:visible; width:194px ;z-index:1; display:none;}
+.note, .item{ clear: both; color: #999999; cursor: pointer; font-size: 12px; height: 20px; line-height: 20px; list-style: none outside none; margin: 0 1px; padding: 0 5px; white-space: nowrap;}
+.active{ white-space:nowrap; clear:both; color:rgb(153, 153, 153); cursor:pointer; font-size:12px; height:20px; line-height:20px; list-style:none outside none; margin:0pt 1px; padding:0pt 5px; background:none repeat scroll 0% 0% rgb(232, 244, 252);}
+</style>
+<script>
+// 效果
+// 可以把这个写成一个插件 自己的插件  
+// 百度是数据每次都更新  邮箱是写死了  不用采用ajax与jsonp
+window.onload = function(){
+	var s1 = new Suggest();
+	s1.init();   //初始化程序
+};
+
+// 混合构造函数与原型法
+// 构造函数的创建对象方法
+function Suggest(){
+	// 属性
+	this.oInput = document.getElementById('input1');
+	this.oUl = document.getElementById('suggest');
+	this.aLi = this.oUl.getElementsByTagName('li');
+}
+//  百度搜索的逻辑  每次输入的时候  就会变化   而且在下的时候 也会变化
+// 方法
+Suggest.prototype = {
+
+	init : function(){
+		this.toChange();
+		// 光标移开就消失
+		this.toBlur();
+	},
+	toChange : function(){
+		// 输入时候会连续触发
+		//ie : onpropertychange
+		//标准 : oninput
+		var ie = !-[1,];
+		// 必须先存起来  否则this指向会成为this.oInput  THis指向对象
+		var This = this;
+		console.log(This); //This === Suggest
+		
+		if(ie){
+			this.oInput.onpropertychange = function(){
+				// ie下一上来  就触发   当输入时候才会触发
+				if(This.oInput.value==''){ 
+					// 没有这条删除为空的时候 还会有第一个值
+					This.tips(); 
+					return;
+				}
+				This.showUl();
+				This.tips();
+				This.sel(1);
+			};
+		}
+		else{
+			// 标准下
+			this.oInput.oninput = function(){
+				This.showUl();
+				This.tips();
+				This.sel(1);
+			};
+		}
+	},
+	
+	showUl : function(){
+		this.oUl.style.display = 'block';
+	},
+	
+	toBlur : function(){
+		var This = this;
+		this.oInput.onblur = function(){
+			This.oUl.style.display = 'none';
+		};
+	},
+	
+	// 每次输入的时候都有提示  在操作@之前的效果
+	tips : function(){
+	
+		var value = this.oInput.value;
+		// 去除输入@之后还有@@
+		// 因为有全称      找到@后面的字符串去截取
+		var re = new RegExp('@'+value.substring(value.indexOf('@')+1)+'');
+	
+		//请选择邮箱类型不变   从第一个开始操作  
+		// 很重要  全部删除后  走else  一次性清空   就不出来提示框了所以必须加
+		// 所有的都显示出来先
+		for(var i = 1; i < this.aLi.length; i++) {
+			this.aLi[i].style.display = 'block';
+		}
+		//如果匹配  输入了@之后
+		if(re.test(value)){
+			
+			for(var i=1;i<this.aLi.length;i++){
+				// 只能这样获取自定义标签  否则会undefined
+				var oEmail = this.aLi[i].getAttribute('email');
+				// 第一个li 
+				if(i==1){
+					this.aLi[i].innerHTML = value;
+				}
+				// 带后缀邮箱的
+				else{
+					if(re.test(oEmail)){
+						//面向对象很拉掉很多this
+						this.aLi[i].style.display = 'block';
+					}
+					else{
+						this.aLi[i].style.display = 'none';
+					}
+				}
+			}
+		}
+		// 没有输入@前 普通的
+		else{
+			for(var i=1;i<this.aLi.length;i++){
+				var oEmail = this.aLi[i].getAttribute('email');
+				if(!oEmail){
+					this.aLi[i].innerHTML = value;
+				}
+				else{
+					// 写好的后缀
+					this.aLi[i].innerHTML = value + oEmail;
+				}
+			}
+		}
+	},
+	
+	// 默认第几条被选中   键盘控制  走完后  在走一个循环  走到开头
+	sel : function(iNow){
+		
+		var This = this;
+		
+		// 先让所有的都清空   如果不清空  mouseover时候 在改变 会选中两条
+		for(var i=1;i<this.aLi.length;i++){
+			this.aLi[i].className = 'item';
+		}
+		// 如果输入框为空  不选中
+		if(this.oInput.value == ''){
+			this.aLi[iNow].className = 'item';
+		}
+		// 如果不为空  则让他显示  清空就没有默认样式了
+		else{
+			this.aLi[iNow].className = 'active';
+		}
+		
+		// 光标移入就要显示事件
+		for(var i=1;i<this.aLi.length;i++){
+			// 添加索引
+			this.aLi[i].index = i;
+			this.aLi[i].onmouseover = function(){
+				//其他的要还原
+				for(var i=1;i<This.aLi.length;i++){
+					// 改变this指向
+					This.aLi[i].className = 'item';
+				}
+				// 当前的为active
+				this.className = 'active';
+				// 为了上与下
+				iNow = this.index;
+			};
+			// 鼠标按下
+			this.aLi[i].onmousedown = function(){
+				This.oInput.value = this.innerHTML;
+			};
+		}
+		
+		// 键盘控制的是
+		this.oInput.onkeydown = function(ev){
+			var ev = ev || window.event;
+			if(ev.keyCode == 38){  //上
+				if(iNow == 1){
+					// 到最后一条
+					iNow = This.aLi.length-1;
+				}
+				else{
+					iNow--;
+				}
+				for(var i=1;i<This.aLi.length;i++){
+					This.aLi[i].className = 'item';
+				}
+				This.aLi[iNow].className = 'active';
+			}
+			else if(ev.keyCode == 40){  //下
+				if(iNow == This.aLi.length-1){
+					iNow = 1;
+				}
+				else{
+					iNow++;
+				}
+				for(var i=1;i<This.aLi.length;i++){
+					This.aLi[i].className = 'item';
+				}
+				This.aLi[iNow].className = 'active';
+			}
+			else if(ev.keyCode == 13){  //回车
+				This.oInput.value = This.aLi[iNow].innerHTML;
+				// 让光标移开
+				This.oInput.blur();	
+			}
+		};
+	}
+};
+
+</script>
+</head>
+<!--优雅降低  高版本用最新技术  低版本的降级-->
+<body>
+<div id="login">
+	<div class="detail">
+    	<input id="input1" type="text" maxlength="128" placeholder="邮箱/会员帐号/手机号" autocomplete="off" node-type="loginname" class="name" tabindex="1" name="loginname">
+    </div>
+    <div class="detail">
+    	<input type="password" maxlength="24" placeholder="请输入密码" node-type="password" class="pass" tabindex="2" name="password">
+    </div>
+   	<ul id="suggest">
+    	<li class="note">请选择邮箱类型</li>
+        <li email="" class="item"></li>
+        <li email="@sina.com" class="item">@sina.com</li>
+        <li email="@163.com" class="item">@163.com</li>
+        <li email="@qq.com" class="item">@qq.com</li>
+        <li email="@126.com" class="item">@126.com</li>
+        <li email="@vip.sina.com" class="item">@vip.sina.com</li>
+        <li email="@sina.cn" class="item">@sina.cn</li>
+        <li email="@hotmail.com" class="item">@hotmail.com</li>
+        <li email="@gmail.com" class="item">@gmail.com</li>
+        <li email="@sohu.com" class="item">@sohu.com</li>
+        <li email="@yahoo.cn" class="item">@yahoo.cn</li>
+        <li email="@139.com" class="item">@139.com</li>
+        <li email="@wo.com.cn" class="item">@wo.com.cn</li>
+        <li email="@189.cn" class="item">@189.cn</li>
+    </ul>
+</div>
+</body>
+</html>

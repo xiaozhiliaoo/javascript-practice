@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<script type="text/javascript">
+	function Person(name,sex){
+		this.name = name;
+		this.sex = sex;
+	}
+	
+	Person.prototype.showName = function(){
+		alert(this.name);
+	}
+	
+	Person.prototype.showSex = function(){
+		alert(this.sex);
+	}
+	
+	//从父级拿东西
+	function Worker(name, sex, job){
+		// this是new出来的worker对象  传给了person  让person以为是person  其实不是person
+		// 为了继承属性    构造函数伪装
+		Person.call(this,name,sex);
+		this.job = job;
+	}
+	//通过原型继承父级的方法  不是复制 是引用
+	//这样父类会有子类方法。
+	//Worker.prototype = Person.prototype;
+	//alert(Person.prototype.showJob);  true
+Worker.prototype.showJob = function(){
+	alert(this.job);
+}
+
+for(var i in Person.prototype){
+	Worker.prototype[i] = Person.prototype[i];
+}
+	
+	var oP= new Person('ff1','ff2');
+	oP.showName();
+	oP.showSex();
+	var oW = new Worker('d','fff','ggg');
+	oW.showName();
+	oW.showSex();
+	oW.showJob();
+	// 子类影响了父类
+	//alert(Person.prototype.showJob);
+</script>
+<body>
+</body>
+</html>

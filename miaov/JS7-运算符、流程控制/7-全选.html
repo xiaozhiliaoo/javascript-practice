@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+	window.onload = function(){
+		var oBtn = document.getElementById("btn1");
+		var oCheck = document.getElementsByTagName("input");
+		var flag = true;
+		//简单的ifelse可以使用三目运算符
+		oBtn.onclick = function(){
+			if(flag){
+				for(var i=1;i<oCheck.length;i++){
+					oCheck[i].checked = true;
+					oBtn.value="全不选";
+				}
+				flag=false;
+			}else{
+				for(var i=1;i<oCheck.length;i++){
+					oCheck[i].checked = false;
+					oBtn.value="全选";
+				}
+				flag=true;
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<input type="button" id="btn1" value="全选" />
+	<!--ul>(li>input[type="checkbox"])*5-->
+	<ul>
+		<li><input type="checkbox" /></li>
+		<li><input type="checkbox" /></li>
+		<li><input type="checkbox" /></li>
+		<li><input type="checkbox" /></li>
+		<li><input type="checkbox" /></li>
+	</ul>
+
+</body>
+</html>

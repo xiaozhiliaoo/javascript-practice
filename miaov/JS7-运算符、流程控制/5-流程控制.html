@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+
+<script>
+var str = 'js';
+/*
+if ( str === 'js' ) {
+	alert( 'js' );
+} else if ( str === 'html' ) {
+	alert( 'html' );
+} else {
+	alert( str );
+}
+*/
+switch( str ){
+	default :
+		alert("I am default");
+	case 'js' : 
+		alert( 'js' ); break;
+	case 'html' : 
+		alert( 'html' ); break;
+}
+
+//只会弹出js！！！
+
+if ( 12<45 ) {
+	alert( '12<45' );
+} else {
+	alert( '12!<45' );
+}
+
+// 120<45 ? alert( '120<45' ) : alert( '120!<45' );
+
+// alert( 120<450?'120<450':'120!<450' );
+
+/*
+var i=0;
+while (i<3){
+	alert(i);
+	i++;
+}
+*/
+//break与continue的区别
+for(var i=0; i<6; i++){
+	if( i == 4 ){
+		 break;// 跳出
+	}
+	alert(i);   // 0  1  2  3
+}
+alert(i);   //4
+
+for(var i=0; i<6; i++){
+	if( i == 4 ){
+		 continue;// 跳过
+	}
+	alert(i);   // 0  1  2  3  5  6
+}
+alert(i);   //5
+
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

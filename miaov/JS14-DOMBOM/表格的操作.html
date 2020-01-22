@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+	window.onload = function(){
+		
+		
+		var oTab = document.getElementById("tab1");
+//		alert(oTab.children[0].children[1].children[1].innerHTML);
+	alert(oTab.tBodies[0].rows[1].cells[1].innerHTML)
+/**
+ * 操作表格的属性
+ * tHead  表头
+ * tBodies  表正文
+ * tFoot  表尾
+ *   rows  行
+ *   cells  列
+ * 
+ */
+
+
+
+	}
+</script>
+</head>
+<body>
+	<table border="1px" width="100%" id="tab1" cellspacing="" cellpadding="">
+		<!--会默认加上tbody-->
+		<thead>
+			<tr>
+				<td>id</td>
+				<td>name</td>
+				<td>sex</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>1</td>
+			<td>leo1</td>
+			<td>boy</td>
+			<td><a href="javascript:;">删除</a></td>
+		</tr>
+		
+		<tr>
+			<td>2</td>
+			<td>leo2</td>
+			<td>girl</td>
+			<td><a href="javascript:;">删除</a></td>
+		</tr>
+		
+		<tr>
+			<td>3</td>
+			<td>leo3</td>
+			<td>boy</td>
+			<td><a href="javascript:;">删除</a></td>
+		</tr>
+		</tbody>
+		
+	</table>
+</body>
+</html>

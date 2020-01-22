@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script src="miaov.js"></script>
+<script>
+window.onload = function () {
+	var str = '';
+	var len = 20;
+	var aDiv = document.getElementsByTagName('div');
+	var timer = null;
+	var num = 0;
+	//生成10个div  但是怎么确保想下掉的时候不可以在点击呢？？
+	for ( var i=0; i<len; i++ ) {
+		str += '<div style="width:50px; height:50px; background:red; position:absolute; top:0px; left:'+ i*60 +'px;"></div>';
+	}
+	var flag = true;
+	document.body.innerHTML = str;
+	
+	document.onclick = function () {
+		if(flag){
+		clearInterval( timer );
+		timer = setInterval( function (){
+			doMove( aDiv[num], 'top', 23, 500 );
+			num ++;
+			if ( num === len ) {
+				clearInterval( timer );
+			}
+		}, 100 );
+		flag = false;
+		num=0;
+		}else{
+			clearInterval( timer );
+		timer = setInterval( function (){
+			doMove( aDiv[num], 'top', 23, 5 );
+			num ++;
+			if ( num === len ) {
+				clearInterval( timer );
+			}
+		}, 100 );
+		flag =true;
+		num=0;
+		}
+	};
+};
+</script>
+
+</head>
+
+<body>
+</body>
+</html>
+

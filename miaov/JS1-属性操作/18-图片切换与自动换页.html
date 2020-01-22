@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+	#wrapper{
+		width:400px;
+		height:400px;
+		margin:150px auto;
+		background: pink;
+		position: relative;
+	}
+	#wrapper a{
+		width:50px;
+		height:50px;
+		display: block;
+		background: orange;
+		text-align: center;
+		text-decoration: none;
+		font-size: 30px;
+		line-height: 40px;
+		opacity: 0.5;
+	}
+	#wrapper a:hover{
+		opacity:0.8;
+	}
+	#prev{
+		position:absolute;
+		top:150px;
+		right:0;
+	}
+	#next{
+		position:absolute;
+		top:150px;
+	}
+	#span{
+		position:absolute;
+		bottom:0;
+		background: lawngreen;
+		width:400px;
+		height:30px;
+		text-align: center;
+		/*有了行高就自动居中*/
+		line-height: 30px;
+	}
+	#p{
+		width:400px;
+		height:30px;
+		background: red;
+		position:absolute;
+		top:0;
+		margin:0;
+		text-align: center;
+		line-height: 30px;
+	}
+	#img{
+		width:400px;
+		height:400px;
+	}
+	
+	#wrapper div{
+		position:absolute;
+		width:20px;
+		height:20px;
+		margin: 0px;
+		background: pink;
+		text-align: center;
+		opacity: 0.5;
+	}
+	#wrapper div:hover{
+		opacity: 0.8;
+	}
+	#d1{
+		bottom:35px;
+		left:10px;
+	}
+	#d2{
+		bottom:35px;
+		left:40px;
+	}
+	#d3{
+		bottom:35px;
+		left:70px;
+	}
+	#d4{
+		bottom:35px;
+		left:100px;
+	}
+</style>
+<script type="text/javascript">
+	window.onload = function(){
+		var oImg = document.getElementById("img");
+		var oP = document.getElementById("p");
+		var oSpan = document.getElementById("span");
+		var oNext = document.getElementById("prev");
+		var oPrev = document.getElementById("next");
+		var aText = ["lili","haha","bibi","ok"];
+		var oD1 = document.getElementById("d1");
+		var oD2 = document.getElementById("d2");
+		var oD3 = document.getElementById("d3");
+		var oD4 = document.getElementById("d4");
+
+		var aImg = ['img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg'];
+		var num = 0;
+		//初始化
+		function change(){
+		oSpan.innerHTML = (num+1)+"/"+aImg.length;
+		oP.innerHTML = aText[num];
+		oImg.src = aImg[num];
+		}
+		change();
+		//自动播放时间  2s一播放
+		setInterval(function()
+			{
+				change();
+				num++;
+				if(num == aImg.length)
+					{num = 0;}
+			}
+			,2000);
+		oNext.onclick = function(){
+			num++;
+			if(num == aImg.length){
+				num = 0;
+			}
+			change();
+		}
+		oPrev.onclick = function(){
+			num--;
+			if(num == -1){
+				num = 3;
+			}
+			change();
+		}
+		oD1.onmouseover = function(){
+			num = 0;
+			change();
+		}
+		oD2.onmouseover = function(){
+			num = 1;
+			change();
+		}
+		oD3.onmouseover = function(){
+			num = 2;
+			change();
+		}
+		oD4.onmouseover = function(){
+			num = 3;
+			change();
+		}
+		
+	}
+</script>
+</head>
+<body>
+	<div id="wrapper">
+		<span id="span"></span>
+		<p id="p"></p>
+		<a href="javasript:;" id="prev"> > </a>
+		<a href="javasript:;" id="next"> < </a>
+		<div id="d1">1</div>
+		<div id="d2">2</div>
+		<div id="d3">3</div>
+		<div id="d4">4</div>
+		<img alt="" id="img" src="img/1.jpg">
+	</div>
+</body>
+</html>

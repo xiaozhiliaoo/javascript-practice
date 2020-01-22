@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+	window.onload = function(){
+		var oBtn = document.getElementById("btn1");
+		var oText = document.getElementById("text1");
+		
+		oBtn.onclick = function(){
+			alert(oText.value);
+		}
+		//别函数包住的而不会主动执行
+	}
+</script>
+</head>
+<body>
+	<!--用户输入的都在value里面-->
+	<input type="text" value="" id='text1'/>
+	<input type="button"id="btn1" value="按"/>
+	
+	
+	
+	
+	
+</body>
+</html>

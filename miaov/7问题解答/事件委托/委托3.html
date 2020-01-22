@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+/*
+ 1. 什么是事件委托
+2. 通过事件委托提高JS执行性能
+3. 事件委托实例
+4. event对象的事件源
+5. 判断事件源对象：nodeName
+6. 运用事件委托解决新添加元素的事件添加问题
+7. 新浪微博的事件委托
+
+ * */
+window.onload = function(){
+
+	var oUl = document.getElementById('ul1');
+	var aLi = oUl.getElementsByTagName('li');
+	var oInput = document.getElementById('input1');
+	var iNow = 4;
+	
+	/*for(var i=0;i<aLi.length;i++){
+		aLi[i].onmouseover = function(){
+			this.style.background = 'red';
+		};
+		
+		aLi[i].onmouseout = function(){
+			this.style.background = '';
+		};
+	}*/
+	
+	
+	oUl.onmouseover = function(ev){
+		var ev = ev || window.event;
+		var target = ev.target || ev.srcElement;
+		
+		if(target.nodeName.toLowerCase() == 'li'){
+			target.style.background = 'red';
+		}
+	
+	};
+	
+	oUl.onmouseout = function(ev){
+		var ev = ev || window.event;
+		var target = ev.target || ev.srcElement;
+		
+		if(target.nodeName.toLowerCase() == 'li'){
+			target.style.background = '';
+		}
+		
+	};
+	
+	oInput.onclick = function(){
+	
+		iNow++;
+		var oLi = document.createElement('li');
+		oLi.innerHTML = 1111 * iNow;
+		oUl.appendChild(oLi);
+	
+	};
+
+};
+
+</script>
+</head>
+
+<body>
+<input type="button" value="添加一条说说" id="input1" />
+<ul id="ul1">
+	<!--自己没有事件 也会触发父级的事件-->
+	<li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+</ul>
+</body>
+</html>

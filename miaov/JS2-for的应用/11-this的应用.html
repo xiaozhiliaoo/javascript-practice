@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+
+/*
+alert(this);			window
+
+fn1(this);
+function fn1(obj){
+	obj => window
+}
+
+oDiv.onclick = function (){
+	this
+	fn1(this);
+};
+function fn1(obj){  obj => oDiv }
+*/
+
+window.onload = function (){
+	var aBtn = document.getElementsByTagName('input');
+	var that = null;			// 空
+	
+	for(var i=0; i<aBtn.length; i++){
+		
+		aBtn[i].onclick = function (){
+//	1		this.style.background = 'yellow';
+			//必须先存一下 在拿出去
+			that = this;
+			fn1();
+		};
+		
+//3		aBtn[i].onclick = fn1;
+	}
+	
+	function fn1(){
+		// this		=>  window
+		 that.style.background = 'yellow';
+//3		 this.style.background = 'red';
+	}
+};
+</script>
+
+</head>
+
+<body>
+
+<input type="button" value="按钮1" />
+<input type="button" value="按钮2" />
+<input type="button" value="按钮3" />
+
+</body>
+</html>

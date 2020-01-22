@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+		var a = 5;
+		var b = 6;
+		var c = 7;
+		window.onload = function() {
+			console.log(window);
+			changeAll();
+			//不会被改变的  changeAll只会改变全局的
+			alert(a+"-----"+b+"-------"+c);
+		}
+		
+		function changeAll() {
+//			var a = 55;
+//			var b = 66;
+//			var c = 77;
+			a = 55;
+			b = 66;
+			c = 77;
+		}
+		alert(a+"-----"+b+"-------"+c);
+		
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

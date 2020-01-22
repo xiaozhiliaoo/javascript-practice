@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function() {
+	
+	var oForm = document.getElementById('form1');
+	var oBtn = document.getElementById('btn');
+	/*
+	 * onchange  :
+	 * text：当值改变的时候触发
+	 * radio/checkbox  标准下点击时候只要只改变了就触发
+	 *                非标准下焦点离开如果值改变了就触发
+	 * 
+	 * 
+	 */
+	oBtn.onclick = function() {
+		alert("我是列表"+oForm.sex);
+		alert( oForm.sex[0].checked );
+		alert(oForm.sex[0].value)
+		
+		//getElementsByName();
+		
+//		alert( oForm.getElemensByName('sex') );
+		alert("我是列表"+oForm.aihao);
+		for (var i=0; i<oForm.aihao.length; i++) {
+			
+			if (oForm.aihao[i].checked) {
+				alert(oForm.aihao[i].value + ' 选中了');
+			} else {
+				alert(oForm.aihao[i].value + ' 没选中');
+			}
+			
+		}
+		
+		/*for (var attr in oForm.sex) {
+			console.log(attr + ' = ' + oForm.sex);
+		}*/
+		
+		//通过name选择很关键  也方便  
+		alert("我是元素"+oForm.city);
+		alert(oForm.city.value);
+	}
+	
+}
+</script>
+</head>
+
+<body>
+	<form id="form1">
+		<!--name一样的话 只能选一个 -->
+    	<input type="radio" name="sex" value="男" />男
+        <input type="radio" name="sex" value="女" checked />女
+        
+        <input type="checkbox" name="aihao" value="电影" />电影
+        <input type="checkbox" name="aihao" value="音乐" />音乐
+        <input type="checkbox" name="aihao" value="体育" />体育
+        
+        <!--  select value 和下面属性挂钩 -->
+        <select name="city" value="">
+        	<option>请选择一个城市</option>
+            <option value="北京">北京</option>
+            <option value="上海" selected>上海</option>
+            <option value="广州">广州</option>
+            <option value="深圳">深圳</option>
+        </select>
+        
+        <input type="button" value="按钮" id="btn" />
+        <input type="submit" value="提交" />
+    </form>
+</body>
+</html>

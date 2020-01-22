@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+/*
+	定时器：时间概念
+		var timer = setInterval( 函数, 毫秒 );	重复执行（发动机）
+		clearInterval( timer );																	清除
+		
+		var timer = setTimeout( 函数, 毫秒 );	执行一次（炸弹）
+		clearTimeout( timer );
+*/
+
+//alert不是阻断时间，而是阻断程序   瞬间完成
+// for(var i=0; i<3; i++){ document.title = i; }			// 瞬间完成，没有时间根据
+
+i = 0;
+
+var timer = null;
+
+function fn1(){
+	i++;
+	//html取出来都是string
+	document.title = i;
+	if( i === 100 ){
+		//函数放哪不重要    作用域关键  重要在哪调用
+		clearInterval( timer );
+	}
+}
+
+//只有在这里才调用了  前面只是预解析   
+timer = setInterval( fn1, 100 );
+//函数调用方法：  
+// fn1();		// 直接调用
+// document.onclick = fn1;			// 事件调用
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

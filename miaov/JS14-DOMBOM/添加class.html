@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<script type="text/javascript">
+	
+	
+	window.onload = function(){
+		
+		var oDiv = document.getElementById("div1");
+		var oDiv2 = document.getElementById("div2");
+		
+		addClass(oDiv,'box1');
+		
+		// 只会删除一个
+		removeClass(oDiv2,'box');
+		
+		
+		function removeClass(obj, className){
+			if(obj.className !=''){
+				var arrClassName = obj.className.split(' ');
+				var _index = arrIndexOf(arrClassName, className);
+				alert(_index);
+				//如果存的  删除数组的值 然后把数组转化为字符串
+				if(_index != -1){
+					arrClassName.splice(_index,1);
+					obj.className = arrClassName.join(' ');
+				}
+				//如果不存在   就不操作
+			}
+		}
+		
+		
+		
+		function addClass(obj, className){
+			alert(obj);
+			//如果没有class  直接添加
+			if(obj.className == ''){
+				obj.className = className;
+			}
+			//如果有       重复的不会别添加进去的
+			else{
+				var arrClassName = obj.className.split(' ');
+				var _index = arrIndexOf(arrClassName, className);
+				if(_index == -1){
+					//不存在  就添加
+					obj.className += ' '+ className;
+				}else{
+					//存在  存在了就不添加了
+				}
+			}
+		}
+		
+		
+		//  如果没有重复的  返回-1  如果有重复的 返回数组下标
+		function arrIndexOf(arr, v){
+			for(var i=0;i<arr.length;i++){
+				if(arr[i] == v){
+					return i;
+				}
+			}
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	//不能className 给覆盖了
+</script>
+<body>
+	<div id="div1" class="box box1">div1</div>
+	<div id="div2" class="box box1 box1 box1">div2</div>
+
+</body>
+</html>

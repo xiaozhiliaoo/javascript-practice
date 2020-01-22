@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+	var a = function(){
+		alert('abc');
+	}
+	
+	var a =new Function("alert('abc')");
+	// new 了两个function
+	//没写一个就创建一个Function对象
+	var b = new Function("alert('abc')");
+	
+	var b= function(){
+		alert('abc');
+	}
+	
+	alert(a==b);  //false
+</script>
+</head>
+<body>
+</body>
+</html>

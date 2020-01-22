@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<style>
+#qq {
+	width: 200px;
+	height: 400px;
+	background: #F9C;
+}
+
+#title {
+	width: 240px;
+	height: 180px;
+	background: #FC6;
+	position: absolute;
+	top: 10px;
+	left: 240px;
+	display: none;
+}
+
+/*
+ 可以做成header的下拉框   两个思路：
+ ul  li  （ul  li）
+ * 
+ * 
+ * */
+
+</style>
+<script src="miaov.js"></script>
+<script>
+$(function(){
+	var qq = $('qq');
+	var title = $('title');
+	//定义一个定时器  
+	var timer = null;
+	
+	qq.onmouseover = show;
+	qq.onmouseout = hide;
+	//否则会消失
+	title.onmouseover = show;
+	title.onmouseout = hide;
+	
+	function show(){
+		//移上去之后关闭定时器
+		clearInterval( timer );
+		title.style.display = 'block';
+	}
+	function hide(){
+		timer = setTimeout(function(){
+			title.style.display = 'none';
+		}, 1000);
+	}
+});
+</script>
+</head>
+
+<body>
+
+<div id="qq"></div>
+<div id="title"></div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function (){
+	var aBtn = document.getElementsByTagName('input');
+	//自定义属性  添加索引值
+	//给每一个鼠标添加对应事件 必须用索引  除非你是一个一个获取的btn
+	for( var i=0; i<aBtn.length; i++ ){
+		
+		aBtn[i].index = i;			// 自定义属性（索引值）
+		alert(i); //  0   1  2   i会加到3
+		aBtn[i].onclick = function (){
+			
+			 //alert( i );			// 3   出来的都是3  作用域 for包了个函数 不要用i
+			alert( this.index );
+		
+		};
+	}
+};
+</script>
+</head>
+
+<body>
+
+<input type="button" value="btn1" />
+<input type="button" value="btn2" />
+<input type="button" value="btn3" />
+
+</body>
+</html>

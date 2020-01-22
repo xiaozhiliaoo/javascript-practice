@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+// function 构造函数就是类  类就是构造函数
+// Array是类 也是构造函数
+	alert(typeof Date);//Function  说明构造函数就是类   
+	alert(typeof Array);// Function
+	alert(typeof new Array());//Object   因为里面默认构造的是Object
+	alert(typeof Array());  //Object
+	alert(typeof new Date().getDate());//Number
+	//why?
+	alert(typeof CreateMan);//Function
+	alert(typeof new CreateMan());  //Object
+	alert(typeof CreateMan());   //undefined
+	function CreateMan(name, age){
+		// 隐形创建    this = new Object()
+		this.name = name;
+		this.age = age;
+		this.showMeg = function(){
+			alert(name+"---"+age);
+		}
+		//return obj
+	}
+</script>
+</head>
+<body>
+</body>
+</html>

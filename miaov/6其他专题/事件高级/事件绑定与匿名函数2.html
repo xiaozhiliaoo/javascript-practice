@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload = function(){
+				var oBtn = document.getElementById("btn1");
+				function aaa() {
+					alert("aaa");
+				}
+				// 如果传入匿名函数  那么这个事件将不会被取消  如果传入非匿名函数
+				//那么这个事件将被取消 因为两个事件是一样的
+				oBtn.attachEvent("onclick",aaa);
+				oBtn.detachEvent("onclick",aaa);
+			}
+			
+			
+			
+		</script>
+	</head>
+	<body>
+		<input type="button" name="" id="btn1" value="click me" />
+	</body>
+	
+</html>

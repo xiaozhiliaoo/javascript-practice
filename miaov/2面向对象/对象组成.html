@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+	var arr = [1,2,3,4,5,6];
+	alert(typeof(arr));
+	arr.a=5;
+	alert(arr.a);   //5
+	alert(arr);   // 1,2,3,4,5,6
+	
+	function show(){
+		alert('a');
+	};
+	show();    //a
+	//函数是独立的  而属于某个对象时候就是方法
+	//  属性与变量
+	arr.fn = function(){
+		alert('a');
+	}
+	arr.fn();      //a
+</script>
+</head>
+<body>
+</body>
+</html>

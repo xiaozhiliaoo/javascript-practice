@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+/*	function Bbb(){
+		this.b = 5;
+		document.getElementById("btn1").onclick = this.show;
+	}
+	
+	Bbb.prototype.show = function(){
+		alert(this.b);
+	}
+	window.onload = function(){
+	new Bbb();//undefined
+}*/
+	
+	
+	
+	function Bbb(){
+		//本质通过闭包  	取   通过闭包传递this
+		var _this = this;
+		this.b = 5;
+		// 套了层函数
+		document.getElementById("btn1").onclick = function(){
+			//用
+			_this.show();
+		};
+	}
+	
+	Bbb.prototype.show = function(){
+		alert(this.b);
+	}
+	
+	//onload里面包构造函数
+	window.onload = function(){
+	new Bbb();
+}
+</script>
+</head>
+<body>
+	<input type="button" id='btn1' value='btn'/>
+</body>
+</html>

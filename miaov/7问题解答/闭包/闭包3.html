@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+//好处：
+//1.希望一个变量长期驻扎在内存当中
+//2.避免全局变量的污染  在我作用域里面的函数由我来控制
+//3.私有成员的存在
+
+//用法：
+//1.模块化代码
+//2.在循环中直接找到对应元素的索引
+
+
+//好比改变了全局变量、
+/*var a = 1;
+function aaa() {
+	b  = 5;
+	a  = 7;
+}
+aaa();*/
+//alert(a+"==="+b);
+
+/*var a = 1;
+function aaa() {
+	var a = 7;
+}
+aaa();
+alert(a);*/
+
+
+//为什么使用闭包？？？
+
+/*var a = 1;
+function aaa(){
+	a++;
+	alert(a);
+}
+
+aaa();  //2
+aaa();  //3
+alert(a);// a = 3 */
+
+
+// 垃圾回收机制  调用完下次不存在了
+/*function aaa(){
+	var a = 1;
+	a++;
+	alert(a);
+}
+aaa();  //2
+aaa();  //2*/
+
+
+//  函数嵌套函数关系  不受外部函数影响
+//  即使局部变量  也可以每次增加
+//  这就是闭包  参数与函数没有被回收
+/*function aaa(){
+	var a = 1;
+	return function(){
+		a++;
+		alert(a);
+	}
+}
+//aaa();
+var b = aaa();
+b();  //2
+b();  //3
+alert(a);   //undefined  局部变量  变量自动累加了*/
+
+function aaa() {
+	var a = 1;
+	function bbb(){
+		a++;
+		alert(a);
+	}
+	return bbb;
+}
+
+var c = aaa();
+c();
+c();
+c();
+
+// 模块化代码
+//  怎么把函数声明改成函数表达式
+//aaa();  bug
+/*var aaa = (function(){
+	var a = 1;
+	return function(){
+		a++;
+		alert(a);
+	}
+})();
+
+aaa();  //2
+aaa();  //3*/
+
+/*
+var aaa = (function() {
+
+	var a = 1;
+	//  私有函数
+	function bbb() {
+		a++;
+		alert(a);
+	}
+	
+	function ccc() {
+		a++;
+		alert(a);
+	}
+	//  返回json
+	return {
+		b : bbb,
+		c : ccc
+	}
+
+})();*/
+
+
+//aaa.b();  //2
+//aaa.c();  //3
+
+// 外界调用不了
+//alert(a);  // undeined  报错
+//alert(bbb);//undeined
+//alert(ccc);//undeined
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

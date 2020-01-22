@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+	Array.prototype.a= 12;
+	var arr = [1,2,3];
+	alert(arr.a);  //12
+	arr.a = 5;
+	alert(arr.a);   //5
+	//  删除行间样式  原型优先级高   类似于class 与行间样式
+	delete arr.a;
+	alert(arr.a);   //12
+</script>
+</head>
+<body>
+</body>
+</html>

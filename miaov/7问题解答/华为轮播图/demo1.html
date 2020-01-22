@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{ padding:0; margin:0;}
+li{ list-style:none;}
+/*  做成自适应  最小宽度1000px  大于1000自适应    溢出隐藏*/
+#div1{ min-width:1000px; height:396px; position:relative; overflow:-hidden;}
+/*通过js控制无缝宽度  */
+#div1 ul{ position:absolute; left:0;}
+#div1 ul li{ float:left;}
+#div1 ul li img{ position:relative; left:0;}
+
+#btn{ position:absolute; width:100%; text-align:center; bottom:0;}
+#btn a{ cursor:pointer; display:inline-block; width:11px; height:11px; background:#666666;}
+#btn a.active { background:white;} 
+#btn a:hover{ background:white;}
+
+
+/*ie6不支持最小宽度  
+ ie6 hack
+ * */
+*html .ie6_out{ margin-left:1000px; zoom:1;}
+*html .ie6_in{ position:relative; float:left; margin-left:-1000px;}
+</style>
+<script type="text/javascript" src="move.js"></script>
+<script>
+
+//改变left的值
+window.onload = function(){
+	var oDiv = document.getElementById('div1');
+	var oUl = oDiv.getElementsByTagName('ul')[0];
+	var aLi = oUl.getElementsByTagName('li');
+	var aImg = oUl.getElementsByTagName('img');
+	
+	var oBtn = document.getElementById('btn');
+	//  获取三个按钮
+	var aA = oBtn.getElementsByTagName('a');
+	//图片宽写死了
+	var imgWidth = 1920;
+	var iNow = 0;
+	var iNow2 = 0;
+	// 排成一行
+	oUl.style.width = aImg.length * imgWidth + 'px';
+	
+	function toReSize(){
+		// 可视区宽度
+		var veiwWidth = document.documentElement.clientWidth;
+		//  大于1000  做居中效果
+		if(veiwWidth>1000){
+			for(var i=0;i<aImg.length;i++){
+				aImg[i].style.left = - (imgWidth - veiwWidth)/2 + 'px';
+			}
+		}
+	}
+	
+	toReSize();
+	
+	//改变浏览器大小的时候  再次调用
+	window.onresize = function(){
+		toReSize();
+	};
+	
+	// 自动选项卡  加运动框架
+	for(var i=0;i<aA.length;i++){
+		// 三个按钮添加点击事件  先加索引
+		aA[i].index = i;
+		aA[i].onclick = function(){
+		
+			for(var i=0;i<aA.length;i++){
+				aA[i].className = '';
+			}
+			// 当前的加active
+			this.className = 'active';
+			
+			startMove(oUl,{left : - this.index * imgWidth});
+		
+		};
+	}
+	
+	// 自动播放选项卡
+	setInterval(toRun,3000);
+	
+	function toRun(){
+		// 走到最后一个  在回到第一个
+		if(iNow == aLi.length-1){
+			aLi[0].style.position = 'relative';
+			aLi[0].style.left = aLi.length * imgWidth + 'px';
+			iNow = 0;
+		} else {
+			iNow++;
+		}
+		// 无缝切换   走完一个把第一个贴到后面， 第一个消失 关键在于改变定位  第一个定位到最后面
+		iNow2++;
+		
+		for(var i=0;i<aA.length;i++){
+			aA[i].className = '';
+		}
+		
+		aA[iNow].className = 'active';
+		
+		// 走完第一个把定位取消掉
+		startMove(oUl,{left : - iNow2 * imgWidth},function(){
+		
+			if(iNow==0){
+				aLi[0].style.position = 'static';
+				oUl.style.left = 0;
+				iNow2 = 0;
+			}
+		
+		});
+		
+	}
+	
+};
+
+</script>
+</head>
+<body>
+	<!--嵌套两个层  就可以实现ie6下最小宽度-->
+<!--[if lte IE 6]>
+<div class="ie6_out">
+<div class="ie6_in">
+<![endif]-->
+
+<div id="div1">
+	<ul>
+    	<li><img src="1.jpg" /></li>
+        <li><img src="2.jpg" /></li>
+        <li><img src="3.jpg" /></li>
+    </ul>
+    <div id="btn">
+    	<!--ie下bug   所以采用   轮播通过改变dom节点    -->
+    	<a href="javascript:;" class="active"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+    </div>
+</div>
+
+<!--[if lte IE 6]>
+</div>
+</div>
+<![endif]-->
+</body>
+</html>

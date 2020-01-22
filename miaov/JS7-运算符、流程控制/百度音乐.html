@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		div{
+			margin: 0 auto;
+			border:2px solid mediumblue;
+			text-align: center;
+			
+		}
+		div span{
+			text-align: center;
+			line-height: 40px;
+			
+		}
+		img{
+				border:1px solid palegreen;
+				margin-top: 3px;
+		}	
+		
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var arrImg = document.getElementsByTagName('img');
+				var oSpan = document.getElementById("level");
+				for(var i=0;i<arrImg.length;i++){
+					arrImg[i].index = i;
+					arrImg[i].onmouseover = function(){
+						this.src="star2.jpg";
+//						for(var i=0;i<arrImg.length;i++){
+//							arrImg[this.index].src="star2.jpg";
+//							if(this.index == 0){
+//								oSpan.innerHTML="很差";
+//							}else if(this.index ==1){
+//								oSpan.innerHTML="差";
+//							}else if(this.index ==2){
+//								oSpan.innerHTML="中等";
+//							}else if(this.index == 3){
+//								oSpan.innerHTML="好";
+//							}else{
+//								oSpan.innerHTML="十分满意";
+//							}
+//						}
+						
+							
+						
+					}
+					arrImg[i].onmouseout = function(){
+						for(var i=0;i<arrImg.length;i++){
+							arrImg[this.index].src="star.jpg"
+						}
+					}
+					
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div>
+			<span>总体评价</span>
+			<img src="star.jpg" alt="" />
+			<img src="star.jpg" alt="" />
+			<img src="star.jpg" alt="" />
+			<img src="star.jpg" alt="" />
+			<img src="star.jpg" alt="" />
+			<span id="level"></span>
+		</div>
+		
+	</body>
+</html>

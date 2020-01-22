@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<!--文本输入框-->
+<input id="inp1" type="text" />
+
+<script>
+var oInp = document.getElementById('inp1');
+
+oInp.onclick = function (){
+	
+	oInp.type = 'checkbox';
+	
+	// 咱们有仨位“祖宗”
+	/*
+		IE6 IE7 IE8  不支持  本来有check 但是隐藏起来 点击后显示出来  视觉上的效果ok就可以
+	*/
+};
+
+/*
+	oDiv.style.float = 'right';
+	
+	oDiv.style.styleFloat = 'right';		// IE
+	oDiv.style.cssFloat = 'left';			// 非IE
+	
+	IE（styleFloat）
+	非IE（cssFloat）
+	
+	//兼容 技术上掌握    需求上 可以提供最准确的呈现方案  
+    //优雅退化/优雅降级&&渐进增强
+	也可以这么写   oDiv.style.className = 'left';
+	.left{
+		float:left;
+	}
+	.right{
+		float:right;
+	}
+	
+	<div class="right"></div>
+*/
+</script>
+
+</body>
+</html>

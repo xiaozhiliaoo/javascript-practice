@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+li {
+	list-style: none;
+	width: 114px;
+	height: 140px;
+	background: url(img/normal.png);
+	float: left;
+	margin-right: 20px;
+}
+</style>
+<script>
+window.onload = function (){
+	var aLi = document.getElementsByTagName('li');
+	// var onOff = true;	// 只能控制一张图片  只能控制一组 现在有三组！  
+	
+	for( var i=0; i<aLi.length; i++ ){
+		//自定义属性
+		aLi[i].onOff = true;
+		
+		aLi[i].onclick = function (){
+			
+			// alert( this.style.background );
+			//不能作为判断条件的
+			// 背景不能判断
+			// color red #f00 
+			// 相对路径
+			
+			if ( this.onOff ) {
+				this.style.background = 'url(img/active.png)';
+				this.onOff = false;
+			} else {
+				this.style.background = 'url(img/normal.png)';
+				this.onOff = true;
+			}
+		};
+	}
+};
+</script>
+</head>
+
+<body>
+
+<ul>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function() {
+	
+	//可视区尺寸   缩小浏览器尺寸  会变化 而且没有兼容性问题
+//	alert( document.documentElement.clientHeight );
+//	alert(document.documentElement.clientWidth);
+	
+	document.onclick = function() {
+		//滚动距离  documentElement 文档元素
+		//  滚动条属于body在chrome里面 而其他浏览器认为在文档中
+//		alert( document.documentElement.scrollTop );
+		
+//		alert( document.body.scrollTop );
+		
+		//document.documentElement.scrollTop = 100
+		//处理兼容
+//		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		
+//		alert(scrollTop)
+		
+		var oDiv = document.getElementById('div1');
+		
+		//scrollHeight : 内容实际宽高
+		
+		alert(oDiv.scrollHeight);  // 610px
+
+	}
+}
+</script>
+</head>
+
+<body style="height:2000px;">
+	<div id="div1" style="width:100px;height:100px;border: 1px solid red; overflow: auto; padding: 20px;">
+    	<div style="height: 600px;width: 90px; background: red;"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+function show(a, b)
+{
+	alert('this是：'+this+', a是：'+a+', b是：'+b);
+}
+//jS充满了各种各样的简写   连函数调用也是简写   show.call()
+show();
+show(12, 5);				//window
+show.call('abc', 12, 5);	//'abc'  this此时候是abc
+show.apply('abc', [12, 5]);//与call完全一样  第二个参数是数据
+</script>
+</head>
+
+<body>
+</body>
+</html>

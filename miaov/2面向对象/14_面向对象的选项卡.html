@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+	/*window.onload = function(){
+		var oDiv = document.getElementById("div1");
+		var aBtn = oDiv.getElementsByTagName('input');
+		var aDiv = oDiv.getElementsByTagName('div');
+		var i = 0;
+		for(i=0;i<aBtn.length;i++){
+			aBtn[i].index = i;
+			aBtn[i].onclick = function(){
+				for(i=0;i<aBtn.length;i++){
+					aBtn[i].className ='';
+					aDiv[i].style.display='none';
+				}
+				this.className = 'active';
+				aDiv[this.index].style.display='block';
+			}
+		}
+	}*/
+	
+	//一般写对象难
+	window.onload = function(){
+		var tab = new TabSwitch('div');
+	}
+	
+	function TabSwitch(id){
+		var oDiv = document.getElementById(id);
+		this.aBtn = oDiv.getElementsByTagName('input');
+		this.aDiv = oDiv.getElementsByTagName('div');
+		var i = 0;
+		//存下来
+		var _this = this;
+		for(i=0;i<this.aBtn.length;i++){
+			this.aBtn[i].index = i;
+			//tab不是new出来的  而是dominput的
+//			this.aBtn[i].onclick = this.tab;
+			this.aBtn[i].onclick = function(){
+				_this.tab(this);
+			}
+		}
+	}
+	
+	TabSwitch.prototype.tab=function(oBtn){
+		for(i=0;i<this.aBtn.length;i++){
+			this.aBtn[i].className ='';
+			this.aDiv[i].style.display='none';
+		}
+		oBtn.className = 'active';
+		this.aDiv[oBtn.index].style.display='block';
+	}
+	
+</script>
+<style>
+	#div1 div{
+		width:100px;
+		height:100px;
+		background: thistle;
+		display: none;
+	}
+</style>
+</head>
+<body>
+	<div id="div1">
+		<input type="button" value='btn1'/>
+		<input type="button" value='btn2'/>
+		<input type="button" value='btn3'/>
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+	</div>
+</body>
+</html>
+<!--方法：
+	原则  不能有函数套函数  ，但可以有全局变量  放在window.onload外
+	过程： onload 构造函数
+	全局变量：属性
+	函数：方法
+	改错：
+	this，事件,闭包,传参
+	通过闭包传递this
+	面向对象复杂度 85%来自this
+	
+	
+-->

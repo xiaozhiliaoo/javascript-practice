@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="jquery-2.0.3.js"></script>
+<script>
+
+$(function(){
+	//只有script不行~~~默认添加不进来  改成true  就会谈4进来了
+	var str = '<li>1</li><li>2</li><li>3</li><script>alert(4)<\/script>';
+	
+	var arr = jQuery.parseHTML(str,document,true);  //['li','li','li']
+	console.log(arr);
+	$.each(arr,function(i){
+		
+		$('ul').append( arr[i] );
+		
+	});
+	
+	//var arr = ['a','b'];
+	
+	var arr = {
+		0 : 'a',
+		1 : 'b',
+		length : 2
+	};
+	
+	var arr2 = ['c','b'];
+	
+	console.log( $.merge(arr,arr2) );   //对外数组合并  对内还可以对json合并
+	
+	// 合并为成了一个json  合并json
+	
+	
+//	$('<li></li>',{title : 'hi',html : 'abcd',css : {background:'red'}}).appendTo( 'ul' );
+	
+	//this.html('abcd')
+	
+	//<li>
+	//<li></li>
+	
+});
+
+</script>
+</head>
+
+<body>
+<ul>
+</ul>
+</body>
+</html>

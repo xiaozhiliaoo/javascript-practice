@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+.box1 {
+	width: 100px;
+	height: 100px;
+	background: red;
+	position: absolute;
+	left: 100px;
+	top: 100px;
+}
+
+.box2 {
+	width: 100px;
+	height: 100px;
+	background: yellow;
+	position: absolute;
+	left: 250px;
+	top: 50px;
+}
+
+.box3 {
+	width: 100px;
+	height: 100px;
+	background: blue;
+	position: absolute;
+	left: 400px;
+	top: 100px;
+}
+</style>
+<script>
+
+window.onload = function(){
+	// 两个input
+	var aInput = document.getElementsByTagName('input');
+	//  三个div
+	var aDiv = document.getElementsByTagName('div');
+	
+	var arr = [];
+	// 改变位置本质改变位置   使用数组存起来
+	for(var i=0;i<aDiv.length;i++){
+		arr.push( [ getStyle(aDiv[i],'left') , getStyle(aDiv[i],'top') ] );
+	}
+	
+	console.log(arr);
+	// 
+	aInput[0].onclick = function(){
+		// 红色放到最后
+		arr.push(arr[0]);
+		// 删除第一个  这里只是在改变数组
+		arr.shift();
+		
+		//重新赋值
+		for(var i=0;i<aDiv.length;i++){
+			aDiv[i].style.left = arr[i][0];
+			aDiv[i].style.top = arr[i][1];
+		}
+		
+	};
+	
+	aInput[1].onclick = function(){
+		
+		arr.unshift(arr[arr.length-1]);
+		arr.pop();
+		
+		for(var i=0;i<aDiv.length;i++){
+			aDiv[i].style.left = arr[i][0];
+			aDiv[i].style.top = arr[i][1];
+		}
+		
+	};
+	
+	
+	function getStyle(obj,attr){
+		// 标准  有这个属性时候
+		if(obj.currentStyle){
+			return obj.currentStyle[attr];
+		}
+		else{
+		//ie下
+			return getComputedStyle(obj,false)[attr];
+		}
+	}
+};
+
+</script>
+</head>
+
+<body>
+<input type="button" value="←" />
+<input type="button" value="→" />
+<div class="box1"></div>
+<div class="box2"></div>
+<div class="box3"></div>
+</body>
+</html>

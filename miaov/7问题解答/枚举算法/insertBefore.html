@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function() {
+				var p = document.getElementsByTagName("p");
+				var pNew = document.createElement("p");
+				pNew.innerHTML = "lili";
+				// 在js中只有insertBefore   在插入前或者append时候 必须要找到父节点  否则怎么插也没用
+				p[2].parentNode.insertBefore(pNew,p[0]);
+			}
+		</script>
+	</head>
+	<body>
+		<p>i</p>
+		<p>i</p>
+		<p>i</p>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function() {
+				// 分别点击最左边的ul和每个li
+				var oUl = document.getElementById("ul1");
+				/*oUl.onclick = function(ev) {
+					var ev = ev || window.event;
+					var src = ev.srcElement || ev.target;
+					alert(src.innerHTML);
+				}*/
+				
+				oUl.onmouseover = function(ev) {
+					var ev = ev || window.event;
+					var src = ev.srcElement || ev.target;
+					if(src.nodeName.toLocaleLowerCase() == "li") {
+						src.style.backgroundColor = "red";
+					}
+				}
+				
+				oUl.onmouseout = function(ev) {
+					var ev = ev || window.event;
+					var src = ev.srcElement || ev.target;
+					if(src.nodeName.toLocaleLowerCase() == "li") {
+						src.style.backgroundColor = "";
+					}
+				}
+				
+				oUl.onclick = function(ev) {
+					var ev = ev || window.event;
+					var src = ev.srcElement || ev.target;
+					alert(src.innerHTML)
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<ul id="ul1">
+			<li>click me say what happend</li>
+			<li>click me say what happend</li>
+			<li>click me say what happend</li>
+			<li>click me say what happend</li>
+			<li>click me say what happend</li>
+			<li>click me say what happend</li>
+			<li>click me say what happend</li>
+			<li>click me say what happend</li>
+			<li>click me say what happend</li>
+			<li>click me say what happend</li>
+		</ul>
+	</body>
+</html>

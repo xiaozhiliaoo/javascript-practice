@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+	window.onload = function(){
+		var oImg = document.getElementById("img");
+		var oBtn1 = document.getElementById("btn1");
+		var oBtn2 = document.getElementById("btn2");
+		var oBtn3 = document.getElementById("btn3");
+		var oBtn4 = document.getElementById("btn4");
+
+		oBtn1.onclick = bigger1;
+		oBtn2.onclick = bigger2;
+		oBtn3.onclick = bigger5;
+		oBtn4.onclick = bigger10;
+		function bigger1(){
+//			alert(oImg.alt);
+			reset();
+			oImg.width = oImg.width * 2;
+			oImg.height = oImg.height * 2;
+		}
+		function bigger2(){
+			reset();
+			oImg.width = oImg.width * 4;
+			oImg.height = oImg.height * 4;
+		}
+		function bigger5(){
+			reset();
+			oImg.width = oImg.width * 5;
+			oImg.height = oImg.height * 5;
+		}
+		function bigger10(){
+			reset();
+			oImg.width = oImg.width * 10;
+			oImg.height = oImg.height * 10;
+		}
+		function reset(){
+			oImg.width = 10;
+			oImg.height = 10;
+		}
+	}
+</script>
+</head>
+<body>
+	<input type="button"  value="放大图片1X" id="btn1"/>
+	<input type="button"  value="放大图片2X" id="btn2"/>
+	<input type="button"  value="放大图片5X" id="btn3"/>
+	<input type="button"  value="放大图片10X" id="btn4"/><br />
+	<img src="img/1.jpg" alt="美女" width="10px" height="10px" id="img"/>
+	
+</body>
+</html>

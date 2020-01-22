@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+	p{
+		width:300px;
+		border:10px solid forestgreen;
+		padding:20px;
+		
+	}
+	
+	span{
+		background: mediumturquoise;
+	}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var aInp = document.getElementsByTagName("input");
+	var oP = document.getElementsByTagName("p")[0];
+	aInp[1].onclick = function(){
+		var str = aInp[0].value;
+		alert(str);
+		if(!str)return ;
+		alert(oP.innerHTML);
+//		oP.innerHTML = oP.innerHMTL.split(str).join('<span>'+str+'</span>');   细节  innerHTML 不是  innerHMTL
+		oP.innerHTML = oP.innerHTML.split(str).join('<span>'+str+'</span>');
+
+	}
+}
+</script>
+</head>
+<body>
+	<input type="text" />
+	<input type="button" value="查找" />
+
+<p>妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一种全新的快乐学习方法！<br />
+2013年底，妙味课堂最新推出"远程培训"服务，受到很多朋友们的喜爱与追捧，我们必将更加努力的帮助远程学习的朋友实现技术提升……</p>
+
+</body>
+</html>

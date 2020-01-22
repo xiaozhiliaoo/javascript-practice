@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!--一个效果  滑过超链接的时候 显示出来超链接内容  移开的时候 去了body的时候就显示 你不在a上面-->
+<title></title>
+<style>
+	div{
+		width:50px;
+		height:50px;
+		background: palegreen;
+		position: absolute;
+	}
+	
+</style>
+<script type="text/javascript">
+	window.onload = function(){
+		
+		var colorList =['pink','red','black','green','orange'];
+		var oA = document.getElementsByTagName('a');
+		var oDiv = document.getElementsByTagName('div')[0];
+		var i = 0;
+		
+		document.onmousemouse = function(ev){
+				document.title = i++;
+				var ev = ev || event;
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+				oDiv.style.left = ev.clientX + 'px';
+				oDiv.style.top = ev.clientY + scrollTop + 'px';
+			}
+			oA[i].onmouseleave = function(){
+				oDiv[0].style='none';
+			}
+		}
+	
+</script>
+</head>
+<body>
+	<div></div>
+	<a href="javascript:;">11111111</a>
+	<a href="javascript:;">22222222</a>
+	<a href="javascript:;">33333333</a>
+	<a href="javascript:;">44444444</a>
+	<a href="javascript:;">55555555</a>
+</body>
+</html>

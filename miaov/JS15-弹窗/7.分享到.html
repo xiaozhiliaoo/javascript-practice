@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1 {
+	width: 100px;
+	height: 200px;
+	background: red;
+	position: absolute;
+	/*隱藏進去*/
+	left: -100px;
+	top: 100px;
+}
+
+#div2 {
+	width: 30px;
+	height: 60px;
+	position: absolute;
+	/*   -30px  相对于div1  出来-30 才能看到div2*/
+	right: -30px;
+	top: 70px;
+	background: black;
+	color: white;
+	text-align: center;
+}
+</style>
+<script>
+window.onload = function() {
+	
+	var oDiv = document.getElementById('div1');
+	// 使用了冒泡机制  全部给div1做     移上去它触发了onmouseover事件     但是没有事件处理对应之  所以把事件传给了父级  此时候父级进行操作
+	oDiv.onmouseover = function() {
+		this.style.left = '0px';
+	}
+	
+	oDiv.onmouseout = function() {
+		this.style.left = '-100px';
+	}
+	
+}
+</script>
+</head>
+
+<body>
+	<div id="div1">
+    	<div id="div2">分享到</div>
+    </div>
+</body>
+</html>

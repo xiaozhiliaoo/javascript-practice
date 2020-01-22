@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+body{
+	background: black;	
+}
+
+ul{
+	padding:0;
+	margin:0;
+}
+
+li{
+	list-style: none;
+}
+
+#pic{
+	width:400px;
+	height:500px;
+	position:relative;
+	margin:0 auto;
+	background: #fff url(img/loader_ico.gif) no-repeat center;
+}
+
+#pic img{
+	width:400px;
+	height:500px;
+}
+
+#pic ul{
+	position: absolute;
+	top:0;
+	right:-50px;
+	width:40px;
+}
+
+#pic li{
+	widht:400px;
+	height:40px;
+	margin-bottom: 4px;
+	background: #666;
+	
+}
+
+#pic .active{
+	background: #FC3;
+}
+
+
+
+#pic p,#pic span{
+	width:400px;
+	height:40px;
+	text-align:center;
+	color:red;
+	background: pink;
+	line-height: 40px;
+}
+
+#pic span{
+	position:absolute;
+	top:0;
+	
+}
+
+#pic p{
+	position: absolute;
+	bottom:0px;
+}
+
+#pic .active{
+	background: orange;
+}
+
+
+	
+	
+</style>
+<script type="text/javascript">
+	window.onload = function(){
+    var oDiv = document.getElementById("pic");
+    var oImg = oDiv.getElementsByTagName("img")[0];
+    var oSpan = oDiv.getElementsByTagName("span")[0];
+    var oP = oDiv.getElementsByTagName("p")[0];
+    var oUl = oDiv.getElementsByTagName("ul")[0];
+    var oLi = oUl.getElementsByTagName("li");
+	//以后用ajax	
+	var arrUrl = [ 'img/1.png', 'img/2.png', 'img/3.png', 'img/4.png' ];
+	//以后用json
+	var arrText = [ '小宠物', '图片二', '图片三', '面具' ];
+	var num = 0;
+	//初始化
+	function fnTab(){
+		oImg.src = arrUrl[num];
+		oSpan.innerHTML = 1+num+' / '+arrUrl.length;
+		oP.innerHTML = arrText[num];
+		for( var i=0; i<aLi.length; i++ ){
+			aLi[i].className = '';
+		}
+		aLi[num].className = 'active';
+	}
+	fnTab();
+	
+	}
+</script>
+</head>
+<body>
+	<div id="pic">
+		<img src="" alt="" />
+		<span>数量正在加载中....</span>
+		<p>文字说明正在加载....</p>
+		<ul>
+			<!--<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>-->
+		</ul>
+	</div>
+</body>
+</html>

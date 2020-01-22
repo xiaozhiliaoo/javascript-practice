@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+
+/*
+ * 简单的js代码在控制台写  方便测试
+ECMAScript：标准、核心
+HTML 标签类型：block、inline、inline-block、table……  
+JS中的数据类型：数字、字符串、布尔、函数、对象(obj、[]、{}、null)、未定义
+typeof 判断数据类型
+
+*/
+
+var i = 100;
+// alert( typeof i );			// number
+
+var s = ' miaov ';
+// alert( typeof s );				// string
+// alert( s.length );				// 7
+// alert( s.charAt(3) );		// 'a'
+
+var b = true;				// 布尔值：true  false
+// alert( typeof b );		// boolean
+if ( true ) {}
+for ( ; false ; ) {  }
+
+var fn = function (){ alert(1); };
+// alert(fn) :  var fn = function (){ alert(1); };     
+// alert(fn()) :  1  undenfined 
+// fn()  : 1
+function fn1(){
+	alert(2);
+}
+// alert( fn1 )  ;   function fn1(){alert(2);}
+// fn1();   2
+//alert(fn1()) ;     1  undenfined 
+
+
+var obj = document;
+// alert( typeof obj );				// object  物体、东西、对象
+//深刻理解函数是数据类型
+obj.abc = 123;
+obj.onOff = true;
+obj.fn1 = function (){ alert(1); };
+// alert( document.onOff );		// 123
+// alert(document.abc);   abc
+// obj.fn1();   1
+
+var arr = [ 1,2,3,4 ];
+// alert( arr.length );
+// arr[2] = 345;
+// alert( arr );
+// arr.push( 5,6,7 );
+// alert( arr );
+// alert( typeof arr );		// object
+//是Object 不是空的  就可以增加属性与函数
+arr.abc = 999;
+arr.fn1 = function (){ alert('ok'); };
+// alert( arr.abc );   999
+// arr.fn1();    ok
+
+var json = { name:'miaov', age:5  };
+//Object
+// alert( json.name + '今年' + json.age + '岁了' );
+// alert( typeof json );
+
+var n = null;
+//Object
+// alert( typeof n );
+//  n.abc=123;  VM1530:2 Uncaught TypeError: Cannot set property 'abc' of null(…)
+
+var u;
+// alert( typeof u );			// undefined 未定义
+// 一般表明程序出问题的。表示你写的程序出问题了~~
+
+
+//typeof(String)
+//"function"
+//typeof(Array)
+//"function"
+//typeof(Document)
+//"function"
+//typeof(Date)
+//"function"
+//typeof(window)
+//"object"
+//typeof({})
+//"object"
+//typeof([])
+//"object"
+//typeof(null)
+//"object"
+//typeof(obj)
+//"object"
+//typeof("")
+//"string"
+//typeof(*)
+//VM1617:2 Uncaught SyntaxError: Unexpected token *(…)
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

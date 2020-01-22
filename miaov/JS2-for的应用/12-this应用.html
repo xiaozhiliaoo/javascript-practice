@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+li {
+	width: 100px;
+	height: 150px;
+	float: left;
+	margin-right: 30px;
+	background: palegreen;
+	position: relative;
+	/*z-index: -9999;*/
+	z-index: 1;
+	list-style: none;
+}
+
+div {
+	width: 150px;
+	height: 200px;
+	background: red;
+	position: absolute;
+	top: 75px;
+	left: 30px;
+	display: none;
+	
+	/*z-index: 2;*/
+	/*怎么解决被盖住的问题？*/
+}
+</style>
+<script>
+window.onload = function (){
+	var aLi  = document.getElementsByTagName('li');
+	var that = null;
+	var oText=["123","345","567","789"];
+	
+	for( var i=0; i<aLi.length; i++ ){
+		aLi[i].onmouseover = function (){
+			//没事干不会这么写的
+			that = this;
+			//window调用的
+			fn1();
+			//this.getElementByTagName('div')[0].style.display ='none'
+		};
+		aLi[i].onmouseout = function (){
+			//鼠标移动过去的li
+			this.getElementsByTagName('div')[0].style.display = 'none';
+		};
+	}
+	
+	function fn1(){
+		that.getElementsByTagName('div')[0].style.display = 'block';
+//		that.getElementsByTagName('div')[0].style.zindex = 9999;
+		that.getElementsByTagName('div')[0].innerHTML = "看我！！！";
+		
+
+	}
+};
+</script>
+</head>
+
+<body>
+
+	<ul>
+		<li>
+	  		<div></div>
+	    </li>
+		<li>
+	  		<div></div>
+	    </li>
+		<li>
+	  		<div></div>
+	    </li>
+	    <li>
+	  		<div></div>
+	    </li>
+		<li>
+	  		<div></div>
+	    </li>
+		<li>
+	  		<div></div>
+	    </li>
+	</ul>
+
+</body>
+</html>

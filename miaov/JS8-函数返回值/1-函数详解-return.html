@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+
+// return 返回值
+// 数字、字符串、布尔、函数、对象（元素\[]\{}\null）、未定义
+
+fn1();		  //no   	
+alert( fn1().length );   //5
+alert( typeof fn1() );   //string
+alert(fn1);              //函数定义
+alert(fn1());			 // miaov
+function fn1(){
+//	 return 100;
+	return 'miaov';
+}
+
+//f2  函数定义
+//f2() 执行f2
+
+alert(fn2);    //f2定义
+alert(fn2());   //
+fn2(20)(10);
+function fn2(a){
+	return function (b){
+		//a可以加b  去父级作用域
+		alert(a+b);			// 嘿嘿，我是注释~
+	};
+}
+
+
+
+fn3().onload = function (){
+	document.body.innerHTML = 123;
+};
+
+function fn3(){
+	return window;
+}
+
+
+// alert(fn4());  默认加上了return  只不过是未定义
+function fn4(){
+	// return ;
+}
+
+// alert( fn5() );  return后面跟什么代码都不会执行了
+function fn5(){
+//	return 123;
+	
+	alert(520);
+}
+
+/*
+	return：返回值
+		1) 函数名+括号：fn1()	==>  return 后面的值；
+		2) 所有函数默认返回值：未定义；
+		3) return 后面任何代码都不执行了；
+*/
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

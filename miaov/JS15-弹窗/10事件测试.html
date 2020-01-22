@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+	window.onload = function(){
+		var btn1 = document.getElementsByTagName('input')[0];
+		bind(btn1,'click',fn1);
+		bind(btn1,'click',fn2);
+		bind(btn1,'click',fn3);
+	}
+	
+	function fn1(){
+		alert("i am fn1");
+	}
+	function fn2(){
+		alert("i am fn2");
+	}
+	function fn3(){
+		alert("i am fn3");
+	}
+	
+	function bind(obj, evname, fn) {
+	//  标准
+	if (obj.addEventListener) {
+		obj.addEventListener(evname, fn, false);
+	} else {
+		//ie下
+		obj.attachEvent('on' + evname, function() {
+			//调用函数  改变this指向  否则指向window
+			fn.call(obj);
+		});
+	}
+}
+	
+</script>
+</head>
+<body>
+	<input type="button" value="点我"/>
+</body>
+</html>

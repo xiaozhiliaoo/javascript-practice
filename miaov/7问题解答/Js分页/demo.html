@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+/*让每个a移开点*/
+a{ margin:5px;}
+</style>
+<script>
+window.onload = function(){
+	
+	// 传入json块   传入配置参数实现的  封装性比较强的
+	//  值得学习的给函数参数传入json类型数据
+	page({
+		id : 'div1',
+		nowNum : 7,
+		allNum : 15,
+		callBack : function(now,all){
+		// 去后台取数据去
+			alert('当前页:' + now +',总共页:'+all);
+		}
+	});
+	
+};
+
+function page(opt){
+
+	if(!opt.id){return false};
+	
+	var obj = document.getElementById(opt.id);
+	// 不写默认为1
+	// js中 || &&  不一定会返回true or false
+	// || 都为对象 返回第一个  都为数字 返回第一个为true的
+	var nowNum = opt.nowNum || 1;
+	// 总数不写默认为1
+	var allNum = opt.allNum || 5;
+	//存在的话把回调函数赋值  不存在就默认空
+	var callBack = opt.callBack || function(){};
+	// 出现首页的判断  4页首页才出来
+	if( nowNum>=4 && allNum>=6 ){
+		var oA = document.createElement('a');
+		oA.href = '#1';
+		oA.innerHTML = '首页';
+		obj.appendChild(oA);
+	}
+	// 当前页码大于等于2就添加
+	if(nowNum>=2){
+		var oA = document.createElement('a');
+		oA.href = '#' + (nowNum - 1);
+		oA.innerHTML = '上一页';
+		obj.appendChild(oA);
+	}
+	
+	if(allNum<=5){
+		for(var i=1;i<=allNum;i++){
+			var oA = document.createElement('a');
+			oA.href = '#' + i;
+			// 如果是当前页  不添加[]
+			if(nowNum == i){
+				oA.innerHTML = i;
+			}
+			else{
+				oA.innerHTML = '['+ i +']';
+			}
+			obj.appendChild(oA);
+		}	
+	} else {
+	
+		for(var i=1;i<=5;i++){
+			var oA = document.createElement('a');
+			// 防止在 1 2 时候会出现负值
+			if(nowNum == 1 || nowNum == 2){
+				
+				oA.href = '#' + i;
+				if(nowNum == i){
+					oA.innerHTML = i;
+				}
+				else{
+					oA.innerHTML = '['+ i +']';
+				}
+			}
+			// 针对最后两个页码处理  最后两页
+			else if( (allNum - nowNum) == 0 || (allNum - nowNum) == 1 ){
+			
+				oA.href = '#' + (allNum - 5 + i);
+				// 最后一页   不加中括号
+				if((allNum - nowNum) == 0 && i==5){
+					oA.innerHTML = (allNum - 5 + i);
+				}
+				// 倒数第二项
+				else if((allNum - nowNum) == 1 && i==4){
+					oA.innerHTML = (allNum - 5 + i);
+				}
+				else{
+					oA.innerHTML = '['+ (allNum - 5 + i) +']';
+				}
+			
+			}
+			else{
+				oA.href = '#' + (nowNum - 3 + i);
+				
+				if(i==3){
+					oA.innerHTML = (nowNum - 3 + i);
+				}
+				else{
+					oA.innerHTML = '['+ (nowNum - 3 + i) +']';
+				}
+			}
+			obj.appendChild(oA);
+			
+		}
+	
+	}
+	// 出现下一页的判断
+	if( (allNum - nowNum) >= 1 ){
+		var oA = document.createElement('a');
+		oA.href = '#' + (nowNum + 1);
+		oA.innerHTML = '下一页';
+		obj.appendChild(oA);
+	}
+	
+	if( (allNum - nowNum) >= 3 && allNum>=6 ){
+	
+		var oA = document.createElement('a');
+		oA.href = '#' + allNum;
+		oA.innerHTML = '尾页';
+		obj.appendChild(oA);
+	
+	}
+	
+	callBack(nowNum,allNum);
+	
+	// 点击事件  
+	var aA = obj.getElementsByTagName('a');
+	
+	for(var i=0;i<aA.length;i++) {
+		aA[i].onclick = function(){
+			// 巧妙的方法~~~~~~ 获取属性的方法   直接写href获取的是绝对地址  而不是#5	
+			var nowNum = parseInt(this.getAttribute('href').substring(1));
+			
+			obj.innerHTML = '';
+			
+			page({
+			
+				id : opt.id,
+				nowNum : nowNum,
+				allNum : allNum,
+				callBack : callBack
+			
+			});
+			// 阻止往超链接后面添加东西  添加 #号
+			return false;
+			
+		};
+	}
+
+}
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<!--<a href="#1">首页</a>
+	<a href="#3">上一页</a>
+	<a href="#2">[2]</a>
+	<a href="#3">[3]</a>
+	<a href="#4">4</a>
+	<a href="#5">[5]</a>
+	<a href="#6">[6]</a>
+	<a href="#5">下一页</a>
+	<a href="#10">尾页</a>-->
+	
+
+</div>
+</body>
+</html>

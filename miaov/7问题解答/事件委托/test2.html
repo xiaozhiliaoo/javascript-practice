@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		
+	</head>
+	<body>
+		<div id="editor">
+			<button id="bold">加粗</button>
+			<button id="italic">斜体</button>
+			<button id="underline">下划线</button>
+		</div>
+	</body>
+	
+	<script src="jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+			$(function() {
+				$("#editor").on('click','button',function(e) {
+					switch(e.currentTarget.id) {
+						case 'bold':alert("bold");break;
+						case 'italic':alert("italic");break;
+						case 'underline':alert("underline");break;
+						case 'editor':alert("editor");
+					}
+				})
+			});
+		</script>
+</html>

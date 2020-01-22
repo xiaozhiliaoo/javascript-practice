@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1 {
+	width: 100px;
+	height: 200px;
+	border: 1px solid red;
+	display: none;
+}
+</style>
+<script>
+window.onload = function() {
+	
+	/*
+	阻止冒泡 : 当前要阻止冒泡的事件函数中调用 event.cancelBubble = true;
+	*/
+	
+	var oBtn = document.getElementById('btn');
+	var oDiv = document.getElementById('div1');
+	
+	oBtn.onclick = function(ev) {
+		var ev = ev || event;
+		
+		//  不会把事件像父级传播
+		ev.cancelBubble = true;//阻止当前对象的当前事件的冒泡
+		
+		oDiv.style.display = 'block';
+	}
+	
+	/*oBtn.onmouseover = function(ev) {
+		var ev = ev || event;
+		
+		ev.cancelBubble = true;
+	}*/
+	//  事件冒泡机制：  点击btn  会触发div的display：block事件，但是这个事件会一直冒泡到
+	//上级直到window,如果不采取阻止事件冒泡的话，那么会在document.onclick = function()的时候
+	//又立马将他display：none，所以永远不会看到div，如果使用setTimeout会清楚的看到这一现象。
+	document.onclick = function() {
+		setTimeout(function() {
+			oDiv.style.display = 'none';
+		}, 1000);
+		
+//		oDiv.style.display = 'none';
+	}
+	
+}
+</script>
+</head>
+
+<body>
+	<input type="button" value="按钮" id="btn" />
+    <div id="div1"></div>
+    
+    <p>ppppp</p>
+    <p>ppppp</p>
+    <p>ppppp</p>
+    <p>ppppp</p>
+</body>
+</html>

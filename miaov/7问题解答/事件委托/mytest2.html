@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function() {
+				var oI = document.getElementsByTagName("input")[0];
+				var oUl = document.getElementById("ul1");
+				oI.onclick = addLi;
+				oUl.onmouseover = function() {
+					alert(111);
+				}
+				oUl.onmouseout = function() {
+					alert(222);
+				}
+				
+				
+				function addLi() {
+					debugger;
+					var Li = document.createElement("li");
+					Li.innerHTML = "hahaha click me ";
+					oUl.appendChild(Li);
+				}
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="增加li"/>
+		<ul id="ul1">
+			<li>hahaha click me </li>
+			<li>hahaha click me </li>
+			<li>hahaha click me </li>
+			<li>hahaha click me </li>
+			<li>hahaha click me </li>
+		</ul>
+	</body>
+</html>

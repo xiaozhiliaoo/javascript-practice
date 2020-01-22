@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+//  遵循unicode编码值
+var arr = [ 'c', 'd', 'a', 'e' ];
+arr.sort();
+alert( arr );
+
+
+
+var arr2 = [ 4,3,5,5,76,2,0,8 ];
+arr2.sort();
+alert( arr2 );
+//0,2,3,4,5,5,76,8     按照字符串顺序排序
+
+
+arr2.sort(function ( a, b ) {
+	return a - b;
+});
+
+//  由小到大排序  正数   交换位置  正数换位置  js内部实现的逻辑
+alert( arr2 );
+
+var arrWidth = [ '345px', '23px', '10px', '1000px' ];
+//   比较函数
+arrWidth.sort();
+arrWidth.sort(function ( a, b ) {
+	return parseInt(a) - parseInt(b);
+});
+alert(typeof(arrWidth));
+alert( arrWidth );
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

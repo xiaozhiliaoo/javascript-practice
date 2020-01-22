@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+div {
+	padding: 40px 50px;
+}
+
+body{
+	border:1px solid yellow;
+}
+
+#div1 {
+	background: red;
+	position: relative;
+}
+
+#div2 {
+	background: green;
+	position: relative;
+}
+
+#div3 {
+	background: orange;
+	position: relative;
+}
+
+</style>
+<script>
+window.onload = function() {
+	
+	var oDiv3 = document.getElementById('div3');
+	
+	//  获取div3到body的绝对定位 不能保证是不是有相对定位,不管是不是有定位
+	alert( oDiv3.offsetLeft );
+	
+	/*var iTop = 0;
+	var obj = oDiv3;
+	while (obj) {
+		alert( obj.id + ' : ' + obj.offsetTop );
+		iTop += obj.offsetTop;
+		obj = obj.offsetParent;
+		alert(obj + ' : ' + obj.id);
+	}
+	
+	alert( iTop );*/
+	
+	alert( document.body.offsetTop );
+	
+	var p = getPos( oDiv3 );
+	
+	alert( p.top );  //88
+	alert( p.left);   //108
+	
+	function getPos(obj) {
+		//  pos定位json
+		var pos = {left:0, top:0};
+		
+		while (obj) {
+			pos.left += obj.offsetLeft;
+			pos.top += obj.offsetTop;
+			//offsetParent 一直在往上增加
+			alert(obj+"----obj="+obj.id+"-----offsetTop="+obj.offsetTop+"------offsetLeft="+obj.offsetLeft);  //HTMLDivElement   HTMLDivElement HTMLDivElement HTMLBodyElement
+			obj = obj.offsetParent;
+		}
+		
+		return pos;
+		
+	}
+	
+}
+</script>
+</head>
+
+<body id="body1">
+	<div id="div1">
+    	<div id="div2">
+        	<div id="div3"></div>
+        </div>
+    </div>
+</body>
+</html>

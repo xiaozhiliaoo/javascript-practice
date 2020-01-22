@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function() {
+	/*
+	 document.getElementById('form1')
+
+<form id=​"form1">​<!--  没有name值 数据提交不过去  --><input type=​"text" id=​"text1" name=​"username" value>​</form>​
+
+document.getElementById('form1').username
+<input type=​"text" id=​"text1" name=​"username" value>​
+
+
+document.getElementById('form1').children[0]
+<input type=​"text" id=​"text1" name=​"username" value>​
+
+
+document.forms[0].username
+<input type=​"text" id=​"text1" name=​"username" value>​
+	 
+	 
+	 
+	 
+	 
+	 * */
+	/*document.forms[0]
+<form id=​"form1">​<input type=​"text" id=​"text1" name=​"username" value>​</form>​
+	*/
+	var oForm = document.getElementById('form1');
+	//var oText = document.getElementById('text1');
+	
+	//获取表单中一个元素  表单.元素name  数据提交的  表单
+	//  给documet添加  点哪都触发
+	oForm.onclick = function() {
+		//alert(oText.value);
+		
+		alert( oForm.username.value );
+		
+	}
+	
+}
+</script>
+</head>
+
+<body>
+	<form id="form1">
+		<!--  没有name值 数据提交不过去  -->
+    	<input type="text" id="text1" name="username" value="" />
+    </form>
+</body>
+</html>

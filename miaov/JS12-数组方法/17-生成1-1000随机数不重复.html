@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script type="text/javascript">
+		// 定义存放生成随机数的数组
+		var array = [];
+		// 等价于 var array = new Array();
+		// 循环N次生成随机数
+		//  显然效率很低
+		for (var i = 0;; i++) {
+			// 只生成100个随机数  array.length
+			//生成 100 个 0-1000的数据     1000
+			if (array.length < 100) {
+				generateRandom(1000);
+			} else {
+				break;
+			}
+		}
+		// 循环遍历随机数数组
+		alert(array);
+		// 生成随机数的方法
+		function generateRandom(count) {
+			//  1000控制最大的数据
+			var rand = parseInt(Math.round(Math.random() * count));
+			//  每次都要从头开始比较  显然会浪费很多次的比较
+			for (var i = 0; i < array.length; i++) {
+				if (array[i] == rand) {
+					return false;
+				}
+			}
+			array.push(rand);
+		}
+	</script>
+
+	<body>
+	</body>
+
+</html>

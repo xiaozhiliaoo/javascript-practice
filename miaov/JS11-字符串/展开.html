@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+	p{
+		width:200px;
+		margin:50px auto ;
+		border:10px solid red;
+		padding:10px; 
+	}
+</style>
+<script type="text/javascript">
+	window.onload = function(){
+	var oP = document.getElementById("ip");
+	var oSpan = document.getElementById("ispan");
+	var oA = document.getElementById("ia");
+	var oSpanText = oSpan.innerHTML;
+	var flag = true;
+	oA.onclick = function(){
+		if(flag){
+			oSpan.innerHTML = oSpanText.substring(0,23) ;
+			oA.innerHTML = "<<展开";
+			flag = false;
+		}else{
+			oA.innerHTML = ">>收缩 ";
+			oSpan.innerHTML = oSpanText  ;
+			flag = true;
+		}
+		
+	}
+}
+	
+</script>
+</head>
+<body>
+	<p id="ip">
+		<span id="ispan">妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提
+		供一种全新的快乐学习方法！<br />2013年底，妙味课堂最新推出“远程培训”服务，受到很多朋友
+		们的喜爱与追捧，我们必将更加努力的帮助远程学习的朋友实现、技术提升
+		</span>……<a id="ia" href="javascript:;"> >>收缩 </a>
+	</p>
+
+</body>
+</html>

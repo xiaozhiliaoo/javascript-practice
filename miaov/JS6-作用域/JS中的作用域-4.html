@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+本质
+	var i=0;  
+	function(){
+		alert(i);
+	}
+	外面有i  里面想访问  会跳出函数作用域去找
+	闭包与作用域不同
+	
+	
+	
+<script>
+//写函数 就是写作用域  在什么区域访问 在哪里访问
+window.onload = function (){
+	var aBtn = document.getElementsByTagName('input');
+	
+	for( var i=0; i<aBtn.length; i++ ){
+		aBtn[i].onclick = function (){
+		//for执行完后才会产生点击  但是内部没有 只能去外部找	
+//			 alert( i );			// 3
+//			为什么添加样式时候必须在写一遍for？
+//			aBtn[i].style.background = 'yellow';
+//			for( var i=0; i<aBtn.length; i++ ){
+//				aBtn[i].style.background = 'yellow';
+//			}    没有下面时候 i=3  有了之后是undefined  作用域就会预解析  就会去找 var  找到后加了undefiend
+//			for( i=0; i<aBtn.length; i++ ){
+//				aBtn[i].style.background = 'yellow';
+//			}    没有var时候 i=3  去父级找var了
+			for( var i=0; i<aBtn.length; i++ ){
+				aBtn[i].style.background = 'yellow';
+			}
+			
+//			QQ: 1056104999
+//			bbs.miaov.com
+//			
+		};
+	}
+};
+
+
+//代码出错   了解代码执行过程   
+</script>
+
+</head>
+
+<body>
+
+<input type="button" value="按钮1" />
+<input type="button" value="按钮2" />
+<input type="button" value="按钮3" />
+
+</body>
+</html>

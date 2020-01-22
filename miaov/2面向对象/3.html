@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+var a=12;
+alert(window.a);  //12
+	function show(){
+		alert(this);
+	}
+	show();   //Object[Windows]
+	
+	window.show = function(){
+		alert(this);
+	}
+	window.show();  //Object[Windows]
+	//过于经常给window加方法
+</script>
+</head>
+<body>
+</body>
+</html>

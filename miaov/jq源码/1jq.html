@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+
+// jq所有函数都放在了匿名函数中  防止不冲突  
+(function(){
+	
+	var a = 10;
+	
+	function $(){
+		alert(a);
+	}
+	// 对外提供接口  可以调用了  挂载到了window上
+	window.$ = $;
+	
+})();
+
+//alert(a);
+
+$();
+
+//$() jQuery();
+
+
+
+
+
+
+// jquery为什么是面向对象的程序    
+$('#div1').css();
+$('#div1').html();
+
+var arr = new Array();
+arr.push();
+arr.sort();
+
+
+
+
+
+
+
+
+$().css();
+$().html();
+
+$.trim();
+$.proxy();
+
+
+
+
+
+$('ul li + p input.class').css();
+
+
+
+
+
+
+function fn1(){ alert(1) }
+function fn2(){ alert(2) }
+
+var cb = $.Callbacks();
+
+cb.add(fn1);
+cb.add(fn2);
+//  统一管理函数~~~~~
+cb.fire();  //1 ,2
+
+cb.remove(fn2);
+
+cb.fire();  //1
+
+
+
+
+
+
+
+
+
+
+//  定时器先谈2  一秒后谈1   先写先执行  后写后执行  没有延时管理  怎么样 先谈1  后弹出2   
+/*setTimeout(function(){
+	alert(1);
+},1000);
+
+alert(2);*/
+
+// 延迟对象感觉是同步的       对象触发resolve后   才会触发  done函数 利用了回调函数
+var dfd = $.Deferred();
+
+setTimeout(function(){
+	alert(1);
+	dfd.resolve();
+},1000);
+
+dfd.done(function(){
+	alert(2);
+});
+
+
+
+
+
+
+
+// 真正的数据~~~~~数据缓存挂载机制~~~~
+$('#div1').data('name' , 'hello');
+
+$('#div1').data('name');  //hello
+
+
+
+
+
+
+
+
+//  队列机制    animate  先left后top后width  分开写的  定时器是异步的  用到了队列管理
+//  一个走完当前的出去了    
+$('#div1').animate({left : 100});
+$('#div1').animate({top : 100});
+$('#div1').animate({width : 300});
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

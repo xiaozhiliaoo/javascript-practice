@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+	window.onload = function(){
+		// 后台返回的数据
+		var data = [
+		{id:1,username:'leo1',sex:'男'},
+		{id:2,username:'leo2',sex:'男'},
+		{id:3,username:'leo3',sex:'男'},
+		{id:4,username:'leo4',sex:'男'},
+		
+		];
+		//  获取到的表格
+		var oTab = document.getElementById("tab1");
+		/*
+		 document.getElementById("tab1").tBodies;
+		 document.getElementById("tab1").tHead;
+		 document.getElementById("tab1").tFoot;
+		 第一行
+		document.getElementById("tab1").rows[0]
+		第二行
+		document.getElementById("tab1").rows[1]
+		第一行第一列  必须先选择行后面才能选择列
+		document.getElementById("tab1").rows[0].cells[0]
+		<td>​id​</td>
+		第二行第二列​
+		document.getElementById("tab1").rows[1].cells[1]
+		<td>​leo1​</td>
+		
+		通过  .  来选择的只是 该元素的属性  而不能选取子节点  只有doucment.head  he 
+		document.body 可以选择子节点
+		
+		document.getElementById("tab1").tbody之所以不能选择​子节点 因为tbody不是原始的属性
+		
+		dir(document.getElementById("tab1")) 查看表格的所有属性  可以便于操作
+		
+		 * */
+		
+		
+		
+		var oTbody = oTab.tBodies[0];
+		for(var i=0;i<data.length;i++){
+			var oTr = document.createElement('tr');
+			var oTd = document.createElement('td');
+			//  此时取出的是  data[i]的id属性
+			oTd.innerHTML = data[i].id;
+			oTr.appendChild(oTd);
+			
+			//隔行变色
+			if(i % 2 == 0){
+				oTr.style.background ='pink';
+			}else{
+				oTr.style.background ='yellow';
+			}
+			
+			// 只需要不断的创建列
+			oTd = document.createElement('td');
+			oTd.innerHTML = data[i].username;
+			oTr.appendChild(oTd);
+			
+			oTd = document.createElement('td');
+			oTd.innerHTML = data[i].sex;
+			oTr.appendChild(oTd);
+			
+			
+			oTd = document.createElement('td');
+//			oTd.innerHTML = '&nbsp';
+			var oA = document.createElement('a');
+			oA.innerHTML ='删除';
+			oA.href = 'javascript:;'
+			oA.onclick = function(){
+				//删除父级的父级  tr 而不是父级td
+				//document.getElementsByTagName('a')[0].parentNode.parentNode
+				//删除tbody下的tr  
+				oTbody.removeChild(this.parentNode.parentNode);
+				//删除后各行变色依旧显示
+				for(var i=0;i<oTbody.rows.length;i++){
+					if(i % 2 == 0){
+						oTbody.rows[i].style.backgroud ='pink';
+					}else{
+						oTbody.rows[i].style.backgroud ='yellow';
+					}
+				}
+			}
+			oTd.appendChild(oA);
+			oTr.appendChild(oTd);
+			oTbody.appendChild(oTr);
+		}
+
+
+
+	}
+</script>
+</head>
+<body>
+	<table border="1px" width="100%" id="tab1" cellspacing="" cellpadding="">
+		<!--会默认加上tbody-->
+		<thead>
+			<tr>
+				<td>id</td>
+				<td>name</td>
+				<td>sex</td>
+				<td>操作</td>
+			</tr>
+		</thead>
+		<tbody>	</tbody>
+		
+	</table>
+</body>
+</html>

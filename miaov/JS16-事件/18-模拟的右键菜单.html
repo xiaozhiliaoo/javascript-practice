@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+div {
+	border: 1px solid palegreen;
+	width: 100px;
+	height: 191px;
+	background: paleturquoise;
+	display: none;
+	position: absolute;
+}
+
+li {
+	border: 1px solid #fff;
+	list-style: none;
+}
+
+li:hover {
+	background: lawngreen;
+}
+
+a {
+	text-decoration: none;
+	color: #000000;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: gold;
+}
+	
+</style>
+<script type="text/javascript">
+	window.onload = function(){
+		var oDiv = document.getElementById("div1");
+		document.oncontextmenu = function(ev){
+			var ev = ev || event;
+			oDiv.style.display = 'block';
+			
+			oDiv.style.left = ev.clientX + 10+'px';
+			oDiv.style.top = ev.clientY + 10+'px';
+			return false;
+		}
+		
+		document.onclick = function(){
+			oDiv.style.display = 'none';
+		}
+	}
+</script>
+</head>
+<body>
+	<div id='div1'>
+	<ul>
+		<li><a href="http://www.baidu.com">haha</a></li>
+		<li>dddd</li>
+		<li>fffff</li>
+		<li>egggggg</li>
+		<li>ehhhhhh</li>
+		<li>ejjj</li>
+		<li>ekkkk</li>
+		<li>elll</li>
+		<li>e;;;</li>
+		<li>e;;;;</li>
+	</ul>
+	
+	</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			var book = {title:"Perfession Java",author:"LiLi",year:2002};
+			// js对象序列化成json对象
+			var jsonText = JSON.stringify(book);
+			console.log(jsonText+"-------"+typeof(jsonText));
+			// json对象解析为js对象
+			var jsText = JSON.parse(jsonText);
+			console.log(jsText);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

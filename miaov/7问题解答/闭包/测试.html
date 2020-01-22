@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script type="text/javascript">
+		/*var x = 4;
+		function aaa() {
+			x = 5;
+		}
+		function bbb() {
+			alert(x);
+		}
+		aaa();
+		bbb();
+		alert(x);
+		//  5   5 */
+		
+		/*var x = 4;
+		function aaa() {
+			var x = 5;
+		}
+		function bbb() {
+			alert(x);
+		}
+		aaa();
+		bbb();
+		alert(x);
+		//  4  4*/
+		
+		
+		/*function aaa(){
+			var x = 5;
+			x++;
+			alert(x);
+		}
+		aaa();
+		aaa();*/
+		
+		function aaa() {
+			var x = 5;
+			return function(){
+				x++;
+				alert(x);
+			}
+		}
+		//  闭包需要var b 来调用
+	    var b = aaa();
+	    b();
+	    b();
+	</script>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+div {
+	width: 100px;
+	height: 120px;
+	background: red;
+}
+</style>
+<script src="miaov.js"></script>
+<script>
+$(function(){
+	
+	// $('div1').style.width = '300px';
+	
+	
+	$('btn1').onclick = function (){
+		//只有行间样式才有反应  写在style里面获取不了
+		alert("没有反应：" +$('div1').style.width );
+		$('div1').style.cssText = 'width:350px;';
+		alert("getComputedStyle："+ getComputedStyle( $('div1') ).width );			// IE6 7 8 不兼容
+		//ie 6 7 8 用这个方法
+		//Uncaught TypeError: Cannot read property 'width' of undefined
+//		alert("currentStyle"+ $('div1').currentStyle.width );										// 标准浏览器不兼容
+		//浏览器兼容问题 属性判断法 版本判断法
+		
+		/*
+		if( $('div1').currentStyle ){
+			alert( $('div1').currentStyle.width );
+		} else {
+			alert( getComputedStyle( $('div1'), 250 ).width );
+			// FF 4.0 之前  bug  后面不跟参数  就出不来  火狐一连网就自动更新
+		}
+		*/
+		//方法封装后
+		alert( "方法封装后width"+getStyle( $('div1'), 'width' ) );
+		alert( "方法封装后height"+getStyle( $('div1'), 'height' ) );
+		alert( "方法封装后marginRight"+getStyle( $('div1'), 'marginRight' ) );
+		//三个浏览器结果均不同
+		alert( "方法封装后"+getStyle( $('div1'), 'background' ) );
+		alert( "方法封装后"+getStyle( $('div1'), 'backgroundColor' ) );
+		alert( "方法封装后"+getStyle( $('div1'), ' backgroundColor' ) );
+
+		
+		/*
+				获取到的是计算机（浏览器）计算后的样式
+				
+				background: url() red scroll……		复合样式（不要获取）
+				backgroundColor					单一样式（不要用来做判断） 路劲啊等
+				
+				不要有空格
+				不要获取未设置后的样式：不兼容  (例如marginRight)
+				DOM里面兼容性问题很多
+		*/
+	};
+});
+
+
+</script>
+</head>
+
+<body>
+
+<input id="btn1" type="button" value="按钮" />
+<div id="div1"></div>
+
+</body>
+</html>

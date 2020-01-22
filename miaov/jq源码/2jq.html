@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+
+//window查找速度很慢,作用域,一层一层网上走.参数与局部变量一样了,查找速度变快
+// 压缩版本很有用，便于压缩。压缩版本传的不是window   
+//undefined没压缩，作用是什么？？？ 属于window下的属性  不是保留字 不是关键字  在外面可以被修改
+(function(window) {
+	
+	//window
+	
+})(window);
+
+
+/*var undefined = 10;
+
+alert(undefined);
+有的浏览器undiened会被修改，有的不会，所以传入，防止被修改~~~
+* 
+* */
+
+
+
+//"use strict";  ~~~严格模式  写代码要规范  a必须加var  不加报错
+//  严格模式下问题很多
+//a = 10;
+// 不允许写八进制的  jq不建议使用use strict
+//var a = 010;
+
+
+// 别写a = a + 10 会产生歧义~~~  定义变量可维护
+//var iSpeed = 10;
+//a = a + iSpeed;
+
+
+
+
+// 判断a是否存在的两种方法
+//window.a == undefined;
+//typeof window.a == 'undefined';
+
+//var $ = 10;  会影响到jq里面的$
+//$()是jQuery()简写方式
+
+
+
+//$.type()
+//class2type = { '[Object String]' : 'string' , '[Object Array]' : 'array' }
+
+
+//alert( '('+'  111111  '.trim()+')' );
+
+
+
+//$() jQuery()
+
+
+//普通对象  原型下加方法
+function Aaa(){
+}
+Aaa.prototype.init = function(){
+};
+Aaa.prototype.css = function(){
+};
+
+var a1 = new Aaa();
+a1.init();
+a1.css();
+
+// jQuery写法   jQuery().css()  该怎设计？？？？
+//function jQuery(){
+//	return new jQuery.prototype.init();  直接返回对象  很直接可以找到css  line283
+//}
+//jQuery.prototype.init = function(){
+//};
+//jQuery.prototype.css = function(){
+//};
+//jQuery.prototype.init.prototype = jQuery.prototype;
+//
+//jQuery().css();
+// jQuery下的方法可以在init出来的对象下使用的
+
+
+/*rquickExpr : <p>aaaa 或 #div1
+rsingleTag : <p></p>  <div></div>
+
+
+webkit
+
+margin-left : marginLeft
+转化成
+-webkit-margin-left : webkitMarginLeft
+ie转化为
+-ms-margin-left : MsMarginLeft
+
+-2d : 2d*/
+
+
+</script>
+<script src="jquery-2.0.3.js"></script>
+<script>
+//$()  jQuery()
+</script>
+</head>
+
+<body>
+</body>
+</html>

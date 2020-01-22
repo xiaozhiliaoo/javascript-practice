@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+//  普通的函数  没任何特点   构造函数  作用 用来构造对象
+// 工厂方式  缺点：1没有new      2每个对象有一套自己的函数
+	function createPerson(name, sex){
+			//1  创建空白对象
+			var obj = new Object();
+			//2 添加原材料
+			obj.name =name;
+			obj.sex = sex;
+			obj.showName = function(){
+				alert(this.name)
+			}
+			obj.showSex = function(){
+				alert(this.sex);
+			}
+			//3 输出产品
+			return obj;
+		}
+		var p1 = createPerson('gg', 'boy');
+		p1.showName();
+		p1.showSex();
+		var p2 = createPerson('hhhh', 'girl');
+		p2.showName();
+		p2.showSex();
+		alert(p1.showName == p2.showName);
+</script>
+</head>
+<body>
+</body>
+</html>

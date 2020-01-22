@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+
+<script>
+
+var str = 'www.miaov.com/2013ww';
+
+
+for ( var i=0; i<str.length; i++ ) {
+//	alert(charAt(i))
+//  返回单个字符
+	if ( str.charAt(i) === 'i' ) {
+		alert("I am i "+i);
+	}
+}
+
+//返回字符的位置
+ alert( str.indexOf('m') );  //4
+ alert( str.indexOf('m', 5) );//12
+ alert( str.indexOf('X') );			//-1		// -1 表示没找到
+
+alert( str.indexOf('ww', 2) );   //18
+
+
+
+</script>
+
+</body>
+</html>

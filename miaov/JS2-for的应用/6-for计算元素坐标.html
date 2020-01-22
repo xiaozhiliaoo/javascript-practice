@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<style>
+div {
+	width: 50px;
+	height: 50px;
+	background: red;
+	/*此时候body就是relative*/
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 30px;
+	text-align: center;
+	line-height: 50px;
+	/*div里面内容居中  必须有text-align和line-align*/
+	color: #fff;
+}</style>
+
+<script>
+window.onload = function (){
+	var aDiv = document.getElementsByTagName('div');
+	
+	for( var i=0; i<22; i++ ){
+		document.body.innerHTML += '<div>' + i + '</div>';
+	}
+	
+	for( var i=0; i<aDiv.length; i++ ){
+		aDiv[i].style.left = 10 + i*50 + 'px';
+		aDiv[i].style.top = 10 + i*50 + 'px';
+		if(i >= 12){
+			aDiv[i].style.left = 10+i*50+'px';
+			aDiv[i].style.top = (aDiv[i].style.top-i*50)+'px';
+		}
+	}
+	
+	
+	//QQ拖拽不能用float 因为移走后就自动补上去了 用绝对定位
+	// 逢10 往下一行（小练习）
+	// 来一个小V字形（小练习）
+	
+};
+</script>
+</head>
+
+<body>
+
+
+
+</body>
+</html>

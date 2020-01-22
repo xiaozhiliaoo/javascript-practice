@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+var str='asdfb 34 +_=45 ';
+// 结婚网站用户名只能为中文  第一个中文 一   最后一个是  
+var re=/[\u4e00-\u9fa5]/;
+//1、至少匹配一个汉字的写法。
+//2、这两个unicode值正好是Unicode表中的汉字的头和尾。
+//3、"[]"代表里边的值出现一个就可以，后边的“+”代表至少出现1次，合起来即至少匹配一个汉字。
+
+alert(re.test(str));
+</script>
+</head>
+
+<body>
+</body>
+</html>

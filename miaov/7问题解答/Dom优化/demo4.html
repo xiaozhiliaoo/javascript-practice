@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+// 局部变量的写法
+window.onload = function(){
+	var oUl = document.getElementById('ul1');
+	var aLi = oUl.getElementsByTagName('li');
+	for(var i=0;i<5000;i++){
+		var oLi = document.createElement('li');
+		oUl.appendChild(oLi);
+	}
+	
+	/*console.time('hello');
+	 * 
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].innerHTML = 'li';
+	}
+	console.timeEnd('hello');  400ms*/
+	
+	// 对变量进行循环
+	console.time('hello');
+	var len = aLi.length;
+	for(var i=0;i<len;i++){
+		aLi[i].innerHTML = 'li';
+	}
+	console.timeEnd('hello');
+	
+	//  性能不好
+	var oDiv = document.getElementById();
+	var oInput = document.getElementById();
+	var oUl = document.getElementById();
+	
+	//  性能好的
+	var doc = document;
+	var oDiv = doc.getElementById();
+	var oInput = doc.getElementById();
+	var oUl = doc.getElementById();
+	
+	// 尽量用只获取元素节点的方法
+/*	childNodes -> 元素节点、文本节点  只会获取到元素节点
+	children ->   元素节点
+	
+	firstChild
+	firstElementChild
+*/
+	
+	// 两次dom
+	var oUl = document.getElementById('ul1');
+	var aLi = oUl.getElementsByTagName('li');
+	// 对比类似于css选择器  一次dom操作  	
+	var aLi = document.querySelectorAll('#ul1 li');
+	
+};
+
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+</ul>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+//工厂方法解决什么问题的？
+	var obj = new Object();
+	obj.name = 'blue';
+	obj.sex = 'boy';
+	obj.showName = function(){
+		alert(this.name);
+	}
+	obj.showSex = function(){
+		alert(this.sex);
+	}
+	
+	var obj2 = new Object();
+	obj2.name = 'b2222lue';
+	obj2.sex = 'bo2222y';
+	obj2.showName = function(){
+		alert(this.name);
+	}
+	obj2.showSex = function(){
+		alert(this.sex);
+	}
+	obj.showName();
+	obj.showSex();
+	obj2.showName();
+	obj2.showSex();
+</script>
+</head>
+<body>
+</body>
+</html>

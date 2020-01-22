@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+window.onload = function(){
+	var oBtn1 = document.getElementById("btn1");
+	var oBtn2 = document.getElementById("btn2");
+	var oP = document.getElementById("p1");
+	var num = 15;
+	oBtn1.onclick = function(){
+		num += 2;
+		if(num < 50){
+			//JS中不允许出现 - 
+			oP.style.fontSize = num+"px";
+		}else{
+			alert("文字已经不能放大");
+		}
+	}
+	oBtn2.onclick = function(){
+		num -= 2;
+		if(num > 8){
+			oP.style.fontSize = num+"px";
+		}else{
+			alert("文字已经不能放小");
+		}
+	}
+}
+</script>
+</head>
+<body>
+	<input type="button" id="btn1" value="+"/>
+	<input type="button" id="btn2" value="-"/>
+	<p style="font-size: 15px;" id="p1">丽丽</p>
+</body>
+</html>

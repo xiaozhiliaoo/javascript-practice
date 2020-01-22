@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="editor" style="border:5px solid red;background-color: greenyellow;width:300px;height:100px">
+			<button id="bold">加粗</button>
+			<button id="italic">斜体</button>
+			<button id="underline">下划线</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var oE = document.getElementById("editor");
+		/*oE.onclick = function(e) {
+			
+			switch(e.currentTarget.id){
+				case 'bold':alert("bold");break;
+				case 'italic':alert("italic");break;
+				case 'underline':alert("underline");break;
+				case 'editor':alert("editor");
+			}
+		}*/
+		var oB = document.getElementById("bold");
+		// 事件委托  点斜体和下划线
+		oE.onclick = function(e) {
+			alert("oE");
+			console.log("target"+e.target);
+			console.log("currentTarget"+e.currentTarget)
+		}; 
+		// 事件冒泡  点粗体
+		oB.onclick = function(e) {
+			//alert("oB");
+			//console.log("target"+e.target);
+			//console.log("currentTarget"+e.currentTarget);
+		};
+	</script>
+</html>

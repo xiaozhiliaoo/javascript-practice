@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+/*
+var i = 0;
+i++;
+if( i === 5 ){
+	i = 0;
+}
+i%=5;
+
+a = a + b;
+a += b;
+
+'200'==200、!=
+'200'===200、!==
+
+
+alert('200'==200)
+true
+alert('200'===200)
+false 全等  就去全部等于     
+*/
+
+//京东秒转时间
+var s = 3605;			// 秒
+alert( Math.floor(s/60) + '分' + s%60 + '秒'  );
+
+window.onload = function (){
+	var aLi = document.getElementsByTagName('li');
+	var arr = [ 'red', 'yellow' ];
+	//拿之前存一下
+	var str = '';
+	
+	for( var i=0; i<aLi.length; i++ ){
+		
+		aLi[i].index = i;
+		
+		aLi[i].style.background = arr[i%arr.length];
+		
+		aLi[i].onmouseover = function (){
+			//存
+			str = this.style.background;						// 先存颜色
+			this.style.background = 'gray';
+		};
+		aLi[i].onmouseout = function (){
+			// this.style.background = arr[this.index%arr.length];
+			//取  里面没有就去外面找
+			this.style.background = str;
+		};
+	}
+};
+</script>
+<style>
+li { height:24px; margin-bottom:3px; list-style:none; }
+</style>
+</head>
+
+<body>
+
+<ul id="ul1">
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function() {
+	
+	var oUl = document.getElementById('ul1');
+/*	DOM节点的类型
+
+DOM规范（Level 2）定义了12种包含在文档中的不同节点类型。
+
+1. Element：一个标记。
+
+2. Attribute：表示一个元素的属性。
+
+3. Text：表示一个元素的原文内容。
+
+4. CDATASection：在XML文档中表示Character Data（字符数据）部分。
+
+5. Comment：表示一个注释。形式为<!-- comment text -->。
+
+6. Document：表示文档的根节点。
+
+7. DocumentType：每个文档节点都有一个DocumentType节点，它提供文档类型的定义。
+
+8. DocumentFragment：可以将文档片段看作轻量级或者更小型的Document节点。定义这种数据类型是因为通常希望只提取文档的一部分来处理。
+
+9. ProcessingInstruction：表示一个文档处理程序使用的特有指令。
+
+10. Entity：在XML文档中表示一个实体。
+
+11. EntityReference：在文档中表示一个实体引用。
+
+12. Notation：在XML文档中表示一个符号。
+
+Document、Element、Comment、Attribute、CDATA和Text是最重要的节点。
+
+DocumentType、Comment、Text、CDATASection和Notation没有子节点。*/
+
+	
+	
+	
+	/*
+		元素.childNodes : 只读 属性 子节点列表集合
+			标准下：包含了文本和元素类型的节点，也会包含非法嵌套的子节点
+			
+			非标准下：只包含元素类型的节点，ie7以下不会包含非法嵌套子节点
+			
+			childNodes只包含一级子节点，不包含后辈孙级以下的节点
+		
+		DOM节点的类型有很多种	12种
+		
+		元素.nodeType : 只读属性     当前元素的节点类型
+		
+		元素节点	:	1
+		属性节点	:	2
+		文本节点 :	3
+	*/
+	
+	//标准下包含的多
+	alert( oUl.childNodes.length );
+	
+	alert( oUl.nodeType );
+	
+	alert(oUl.childNodes[0].nodeType);
+	
+	//属性
+	// 元素.attributes : 只读 属性 属性列表集合
+	
+	alert( oUl.attributes.length );
+	
+	alert( oUl.attributes[0].nodeType +"----"+oUl.attributes[0].name+"-------"+oUl.attributes[0].value);
+	
+	for (var i=0; i<oUl.childNodes.length; i++) {
+		
+		if ( oUl.childNodes[i].nodeType == 1 ) {
+			oUl.childNodes[i].style.background = 'red';
+		}
+		
+	}
+	
+}
+</script>
+</head>
+
+
+<!--  body子节点只有  head  和 body   不会算下面的   -->
+<body>
+	<ul id="ul1" style="border: 1px solid red;">
+		<li>11111<span>ddd</span></span></li>
+        <li>22222</li>
+        <li>33333</li>
+        <li>44444</li>
+        <p>pppp非法嵌套p标签 但是也算到了节点中 pppp</p>
+    </ul>
+</body>
+</html>

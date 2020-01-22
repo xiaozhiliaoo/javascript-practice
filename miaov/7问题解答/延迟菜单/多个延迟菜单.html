@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>站长之家导航特效 - 妙味课堂 - www.miaov.com</title>
+<link rel="stylesheet" type="text/css" href="miaov_style.css">
+<script>
+window.onload = function(){
+
+	var aA = getByClass(document,'normal');
+	var aSpan = getByClass(document,'float_layer');
+	var timer = null;
+	
+	for(var i=0;i<aA.length;i++) {
+		//每个按钮加对应关系  加索引
+		aA[i].index = i;
+		// 鼠标移入事件
+		aA[i].onmouseover = function(){
+			// 其他隐藏
+			for(var i=0;i<aSpan.length;i++) {
+				aSpan[i].style.display = 'none';
+			}
+			//当前显示
+			aSpan[this.index].style.display = 'block';
+			// 直接消失的话就移动不到子菜单上了
+			clearInterval(timer);
+		};
+		
+		aA[i].onmouseout = function() {
+			// 定时器下调用  this指的是window  希望指向的是按钮
+			var This = this;
+			
+			timer = setTimeout(function(){
+				
+				aSpan[This.index].style.display = 'none';
+				
+			},1000);
+			
+		};
+		
+		// 鼠标移上去清除定时器
+		aSpan[i].onmouseover = function(){
+			
+			clearInterval(timer);
+			
+		};
+		
+		// 鼠标移出1s后消失
+		aSpan[i].onmouseout = function(){
+			
+			var This = this;
+			
+			timer = setTimeout(function(){
+				
+				This.style.display = 'none';
+				
+			},1000);
+			
+		};
+	}
+	
+
+
+	//有重复的  通过class找到元素
+	function getByClass(oParent,sClass){
+		//  父级下面找到所有元素
+		var aEle = oParent.getElementsByTagName('*');
+		//  结果数组
+		var result = [];
+		//  前后有空格  i  区分大小写
+		var re = new RegExp('\\b' + sClass + '\\b','i');
+		// 循环标签
+		for(var i=0;i<aEle.length;i++){
+			if(re.test(aEle[i].className)){
+				result.push(aEle[i]);
+			}
+		}
+		
+		return result;
+	}
+};
+</script>
+</head>
+
+<body>
+
+<div id="nav">
+    <div class="adorn1"></div>
+    <div class="adorn2"></div>
+    <ul>
+        <li>
+            <a class="normal" href="http://www.miaov.com"><span>首页</span></a>
+            <span class="float_layer w1 pos1">
+                <span class="arrows"></span>
+                <span class="decorate1"></span>
+                <span class="decorate2"></span>
+                <a href="http://www.miaov.com"><span>最近更新</span></a>
+                <a href="http://www.miaov.com"><span>活动</span></a>
+                <a href="http://www.miaov.com"><span>报名试听</span></a>
+                <a href="http://www.miaov.com"><span>学员反馈</span></a>
+            </span>
+        </li>
+        <li class="line">
+            <a class="normal" href="http://www.miaov.com"><span>关于我们</span></a>
+            <span class="float_layer w2 pos2">
+                <span class="arrows"></span>
+                <span class="decorate1"></span>
+                <span class="decorate2"></span>
+                <a href="http://www.miaov.com"><span>妙味讲师</span></a>
+                <a href="http://www.miaov.com"><span>培训方式</span></a>
+                <a href="http://www.miaov.com"><span>培训理念</span></a>
+                <a href="http://www.miaov.com"><span>联系我们</span></a>
+            </span>
+        </li>
+        <li class="line">
+            <a class="normal" href="http://www.miaov.com"><span>作品</span></a>
+            <span class="float_layer w3 pos3">
+                <span class="arrows"></span>
+                <span class="decorate1"></span>
+                <span class="decorate2"></span>
+                <a href="http://www.miaov.com"><span>般固</span></a>
+                <a href="http://www.miaov.com"><span>MATRIX</span></a>
+                <a href="http://www.miaov.com"><span>留学e网</span></a>
+                <a href="http://www.miaov.com"><span>ECMall</span></a>
+            </span>
+        </li>
+        <li class="line">
+            <a class="normal" href="http://www.miaov.com"><span>博客</span></a>
+            <span class="float_layer w4 pos4">
+                <span class="arrows"></span>
+                <span class="decorate1"></span>
+                <span class="decorate2"></span>
+                <a href="http://www.miaov.com"><span>JS教程</span></a>
+                <a href="http://www.miaov.com"><span>弹出层效果</span></a>
+                <a href="http://www.miaov.com"><span>3D球面标签云</span></a>
+                <a href="http://www.miaov.com"><span>Window计算器</span></a>
+            </span>
+        </li>
+    </ul>
+	<p><a href="http://www.miaov.com">>>更多</a></p>
+</div>
+
+</body>
+</html>

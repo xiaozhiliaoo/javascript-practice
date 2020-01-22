@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+
+/*
+var num = 0;
+
+function fn1(){
+	num++;     //局部可以改外面的  因为里面找不到
+}
+function fn2(){
+	num--;
+}
+//任何函数都会改全局的，只要里面没有
+fn2();   //-1
+fn1();   // 0
+fn2();    //-1
+alert(num);   //-1
+*/
+
+function fn1(){
+	var a="hahha";
+}
+fn1();
+alert(a);
+//直接报错  预解析看不到外面有变量
+
+
+
+
+// 想要获取函数内的值：
+//mothod1:
+var str = '';
+function fn1(){
+	var a = '大鸡腿~';
+	//修改了父级作用域
+	str = a;
+}
+//函数 由内到外
+fn1();
+// alert( str );
+
+
+//method2：
+function fn2(){
+	var a = '9999999克拉钻石23456789';
+	fn3(a);
+	//函数里面可以调用父级的  函数由里到外
+}
+fn2();
+
+function fn3(a){
+	alert(a);
+}
+
+</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+	//this什么时候出问题？1  定时器  2 事件
+	/*function aaa(){
+		this.a=12;
+		//被定时器调用的对象 必然是window
+		setInterval(this.show,1000);
+	}
+	aaa.prototype.show = function(){
+		alert(this);
+	};
+	var obj = new aaa();
+	obj.show();*/
+	
+	
+	
+	function aaa(){
+		//对象里面this就是Object
+		var _this = this;
+		this.a=12;
+		//被定时器调用的对象 必然是window
+		setInterval(function(){
+			_this.show();
+		},1000);
+	}
+	aaa.prototype.show = function(){
+		alert(this.a);
+	};
+	var obj = new aaa();
+	obj.show();
+</script>
+</head>
+<body>
+</body>
+</html>

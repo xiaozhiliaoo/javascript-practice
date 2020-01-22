@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+
+alert(a);			// undefined
+alert( fn1 );		// FF 不能对下面的函数进行预解析  好像可以啊
+
+var a = 1;
+function fn1(){
+	alert(123);
+}
+
+//作用域先解析后执行   非作用域是通透的  直接解析
+//我在上面 undefined
+alert("b 我在上面"+b);
+//只有函数大括号是作用域：先解析后执行  if for 的（）不是作用域
+if( true ){
+	var b=1;
+}
+//我在下面 1
+alert("b 我在下面"+b);
+    
+
+
+for(var c=0;c<10;c++){
+	
+}
+//10
+alert(c);
+
+
+function fn3(){
+	var d=1;
+}
+//Uncaught ReferenceError: d is not defined
+alert(d);
+
+
+
+//报错
+alert(a)
+function f4(){
+	a=5;
+}
+
+// undefined
+alert(a)
+if(true){
+	a=5;
+}
+
+
+//预解析机制在所有浏览器都一样 火狐在预解析if判断时候  会出现解析不到  兼容性问题
+//别轻易往 if for加函数
+alert(fn1);
+if(true){
+	var a=1;
+	function fn1(){
+		alert(123);       //123445注释都有
+	}
+}
+//火狐 报错
+//谷歌   function fn1(){
+//		alert(123);       //123445注释都有
+//	}
+//应该这样写:
+alert(fn1);
+var a=1;
+function fn1(){
+	alert(123);
+}
+if(true){
+	
+}
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>
+
+

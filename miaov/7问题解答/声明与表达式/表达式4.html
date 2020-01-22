@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+function aaa(){
+
+	return bbb();
+
+}
+
+/*function bbb(){
+	debugger;
+}*/
+//  堆栈分析  先是aaa进入 然后bbb  堆栈  先进入的为栈底
+//aaa();
+
+//  没有bbb就会报错  找不到哪个方法进入堆栈中
+var bbb = (function bbb(){
+	return function(){
+		debugger;
+	}
+})();
+
+aaa();
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

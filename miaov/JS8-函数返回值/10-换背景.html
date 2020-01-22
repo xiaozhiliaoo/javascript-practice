@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+	window.onload = function(){
+		var btn1 = document.getElementById("btn1");
+		var btn2 = document.getElementById("btn2");
+		var arrUrl = [ 'img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg' ];
+		var oBody = document.body; 
+		var num = 0;
+		//相当于一个开关
+		var timer = null;
+		btn1.onclick = function(){
+			//清除上一个定时器 否则定时器会累加  越来越快  bug
+			//定时器由用户控制 必须先关后开
+			clearInterval( timer );			// null、未定义
+			timer = setInterval(function(){
+				oBody.style.background = 'url('+arrUrl[num]+')';
+				num++;
+				num%=arrUrl.length;
+			},1000);
+		}
+		btn2.onclick = function(){
+			clearInterval(timer);
+		}
+	}
+</script>
+<style type="text/css">
+	body{
+		background-image: url(../JS1-属性操作/img/2.jpg);
+	}
+</style>
+</head>
+<body>
+	<input type="button" id="btn1" value="换背景" />
+	<input type="button" id="btn2" value="停止背景" />
+</body>
+</html>

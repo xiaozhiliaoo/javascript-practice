@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+	ul,h2{
+		margin:0;
+		padding:0;
+	}
+	li{
+		list-style: none;
+	}
+	#list{
+		width:240px;
+		border:1px solid #333;
+		margin:0 auto;
+	}
+	#list .lis{
+		
+	}
+	#list h2{
+		height:30px;
+		line-height: 30px;
+		/*缩进*/
+		text-indent: 20px;
+		background: red url(img/ico1.gif) no-repeat 5px center;
+		color:#FFF;
+	}
+	#list ul{
+		display:none;
+	}
+	#list .active{
+		background: url(img/ico2.gif) no-repeat 5px center #FF9;
+		color:#000;
+	}
+	#list ul li{
+		line-height: 24px;
+		border-bottom: 1px solid #333;
+		/*缩进*/
+		text-indent: 24px;
+	}
+	#list ul .hover{
+		background: #98FB98;
+	}
+</style>
+<script type="text/javascript">
+//找元素永远是第一件事情  事件委托     dom操作 找到相邻的子节点
+	window.onload = function(){
+		var oUl = document.getElementById("list");
+		var aH2 = oUl.getElementsByTagName("h2");
+		var aUl = oUl.getElementsByTagName("ul");
+		var aLi = null;
+		var arrLi =[];
+		for(var i=0; i<aH2.length;i++){
+			aH2[i].index = i;
+			//点击H1后发生了什么？
+			aH2[i].onclick = function(){
+				// 
+				for( var i=0; i<aH2.length; i++ ){
+				if( i != this.index ){
+					aUl[i].style.display = 'none';
+					aH2[i].className = '';
+				}
+			}
+				
+				if(this.className ==''){
+					aUl[this.index].style.display ='block';
+					this.className='active';
+				}else{
+					aUl[this.index].style.display='none';
+					this.className='';
+				}
+			}
+		}
+		
+		//for 到 for 中间没有包括函数  作用域没变
+		for(var i=0;i<aUl.length;i++){
+			aLi = aUl[i].getElementsByTagName("li");
+			for(var j=0;j<aLi.length;j++){
+				arrLi.push(aLi[j]);
+			}
+		}
+		
+		//for for 中间包了一个函数  作用域发生改变
+		for(var i=0;i<arrLi.length;i++){
+			arrLi[i].onclick = function(){
+				for(var i=0;i<arrLi.length;i++){
+					//可以来同名的for 清除所有的class
+					arrLi[i].className='';
+				}
+				//this 代表当前的arrLi[i]
+				if( this.className == '' ){
+					this.className = 'hover';
+				}else{
+					this.className = '';
+				}
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<ul id="list">
+		<li class="lis">
+		  	<h2>我的好友</h2>
+		    <ul>
+		    	<li>张三</li>
+		    	<li>张三</li>
+		    	<li>张三</li>
+		    	<li>张三</li>
+		    </ul>
+  		</li>
+		<li class="lis">
+		  	<h2>企业好友</h2>
+		    <ul>
+		    	<li>李四</li>
+		    	<li>李四</li>
+		    	<li>李四</li>
+		    	<li>李四</li>
+		    	<li>李四</li>
+		    </ul>
+	  	</li>
+		<li class="lis">
+		  	<h2>黑名单</h2>
+		    <ul>
+		    	<li>张小三</li>
+		    	<li>李小四</li>
+		    </ul>
+	  	</li>
+	</ul>
+</body>
+</html>

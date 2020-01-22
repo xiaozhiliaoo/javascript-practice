@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function() {
+	
+	var oDiv = document.getElementById('div1');
+	var oBtn = document.getElementById('btn');
+	var oP = document.getElementById('p1');
+	
+	oBtn.onclick = function() {
+		
+		/*
+			父级.replaceChild(新节点，被替换节点) 替换子节点
+		*/
+		document.body.replaceChild( oDiv, oP );    //div去替换p
+		
+		/*
+			累似与剪切  原来的都没有了    原来的位置上的元素都没了
+			appendChild,insertBefore,replaceChild都可以操作动态创建出来的节点，也可以操作已有节点
+		*/
+//		oP.appendChild( oDiv );
+
+
+		//在oDiv前插入oP，只要涉及插入   必有关系到父节点
+		//document.body.insertBefore(oP,oDiv);  //显示顺序就是最后页面出现顺序
+		
+//		oP.appendChild(oDiv);
+		
+	}
+	
+}
+</script>
+</head>
+
+<body>
+	<div id="div1">div1</div>
+    <input type="button" value="按钮" id="btn" />
+    <hr />
+    <p id="p1">ppppp</p>
+</body>
+</html>

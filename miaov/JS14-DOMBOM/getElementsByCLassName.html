@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+
+//就相当于写了一个选择器
+	window.onload = function(){
+	var oUl1 = document.getElementById("ul1");
+	var oUl2 = document.getElementById("ul2");
+	//获取所有box的获取
+//	var aLi = getElementsByClassName(oUl1,'box');
+
+
+//获取oUl1下面的box  getElementsByClassName(parent,className)
+//	var aLi = getElementsByClassName(oUl1,'box');
+	
+//所有的box获取
+//	var aLi = getElementsByClassName(document,'box');
+	
+//只获取li下的box  不获取p下面的   getElementsByClassName(parent,tagName,className)
+	var aLi = getElementsByClassName(document,'li','box');
+
+		alert(aLi.length);
+		console.log(aLi);
+		
+		for(var i=0; i<aLi.length; i++){
+			aLi[i].style.background='pink';
+		}
+		
+		function getElementsByClassName(parent,tagName,className){
+			var aEls = parent.getElementsByTagName(tagName);
+			alert(aEls);
+			var arr = [];
+			for(var i=0; i<aEls.length; i++){
+				/*if(aEls[i].className == className){
+					
+					arr.push( aEls[i]);*/
+					//防止有空格的情况出现
+					var aClassName = aEls[i].className.split(' ');
+					for(var j=0; j<aClassName.length; j++){
+						if(aClassName[j] == className){
+							arr.push(aEls[i]);
+							break;  //没有break会显示3个
+						}
+					}
+				}
+			return arr;
+		}
+	}
+	
+	
+</script>
+</head>
+<body>
+	<ul id="ul1">
+		<li>1111</li>
+		<li class="box box">22222</li>
+		<li>3333</li>
+		<!--用空格拆分-->
+		<li class="box box2">4444</li>
+	</ul>
+	
+	<ul id="ul2">
+		<li>1111</li>
+		<li class="box box">22222</li>
+		<li>3333</li>
+		<!--用空格拆分-->
+		<li class="box box2">4444</li>
+	</ul>
+	
+	<div id="div1">
+		<p class="box">pppp</p>
+	</div>
+</body>
+</html>
